@@ -1,4 +1,8 @@
-# AGENTS.md — 《中央帝国的军事密码》视频素材工程
+# 《中央帝国的军事密码》视频素材工程 — AI 接手文档
+
+> **文档体系（GEB）**：播种 2026-09-28 ｜ 维护者：dehewujiang + AI 会话。
+> 本文档在 `CLAUDE.md` 与 `AGENTS.md` 两个文件名下同时存在，**内容必须逐字一致**（本机无符号链接权限，坚果云同步也只认物理文件，故采用复制对）。
+> **修改任意一份后，必须立即同步另一份**：改 CLAUDE.md → `Copy-Item CLAUDE.md AGENTS.md -Force`；改 AGENTS.md → `Copy-Item AGENTS.md CLAUDE.md -Force`（在项目根目录执行）。
 
 书稿文件夹 + 地图动画素材。**不是软件项目**：没有测试框架、没有构建链。核心是一条单向流水线：
 **母版 KML → `make_video_assets.py` → `视频制作/` 下的 GES 素材**（.esp 相机动画 + .kml 路线图层，成对编号 01~11，按成片顺序使用）。
@@ -53,3 +57,14 @@ python make_video_assets.py verify     # 回归校验：解码值与路线/方�
 - 动手前先提交 checkpoint（`git add -A; git commit -m "checkpoint: ..."`）；git 仅作本机回退锚点，用户不用 git。
 - 母版 KML、`视频制作/*.kml`、`.bak`、`kml.json` 只读；删除/覆盖等不可逆操作先问用户。
 - 项目在坚果云同步：改完文件后，用户需等同步完成再在 GES 里测试。
+
+## 文档体系（L1/L2/L3，任何 AI 的导航）
+
+| 层 | 位置 | 内容 |
+|---|---|---|
+| L1 · 本目录 | `CLAUDE.md` / `AGENTS.md`（同内容复制对） | 全局地图：文件角色、命令、编码规范、纪律 |
+| L2 · `视频制作/` | `视频制作/CLAUDE.md` / `视频制作/AGENTS.md`（同内容复制对） | 成员清单 + 父级链接 |
+| L3 · 代码文件头 | `make_video_assets.py` 的 [INPUT]/[OUTPUT]/[POS]/[PROTOCOL] | 文件级契约 |
+
+- 接手顺序：先读 L1 → 需要时读 L2 → 改代码前先看 L3 头部。
+- 同步义务：目录成员有增减/改动 → 更新对应 L2；L2 变化 → 回查 L1；一次任务收尾跑 `/geb-workflow` 做 L3→L2→L1 同构检查。
