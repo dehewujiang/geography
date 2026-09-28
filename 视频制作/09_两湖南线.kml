@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+  <name>09_两湖南线</name>
+  <Style id="eastStyle">
+    <LineStyle><color>ff0000ff</color><width>3</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+  <Style id="midStyle">
+    <LineStyle><color>ff00ff00</color><width>4</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+  <Style id="westStyle">
+    <LineStyle><color>ffff0000</color><width>4</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+  <Style id="southStyle">
+    <LineStyle><color>ff0080ff</color><width>3</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+
+<Placemark>
+    <name>下半场-湖南南线（兀良合台）</name>
+    <description>1258-1259年：云南→南宁老苍关→桂林→怀化→长沙（潭州）。击溃宋军，围城月余，大小13战。</description>
+    <styleUrl>#southStyle</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      102.71,25.04,0
+      108.36,22.81,0
+      110.28,25.27,0
+      110.00,27.57,0
+      112.93,28.22,0
+    </coordinates></LineString>
+  </Placemark>
+
+<Placemark>
+    <name>湖南-长沙1259年围城</name>
+    <description>潭州，兀良合台从广西北上，击溃二十万守军，围城月余。</description>
+    <Point><coordinates>112.93,28.22,0</coordinates></Point>
+  </Placemark>
+
+</Document>
+</kml>

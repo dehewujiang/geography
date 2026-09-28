@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+  <name>蒙古大迂回全程路线（1253-1259）</name>
+  <description>上半场三路三色：东路红、中路绿、西路蓝；下半场统一橙色。坐标为现代地名大致对应，仅用于讲故事摆镜头，非考古精确位置。</description>
+
+  <Style id="eastStyle">
+    <LineStyle><color>ff0000ff</color><width>3</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+  <Style id="midStyle">
+    <LineStyle><color>ff00ff00</color><width>4</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+  <Style id="westStyle">
+    <LineStyle><color>ffff0000</color><width>4</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+  <Style id="southStyle">
+    <LineStyle><color>ff0080ff</color><width>3</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+
+  <Placemark>
+    <name>上半场-东路牵制（抄合、也只烈）</name>
+    <description>1253年8-12月：达拉沟→黄胜关→松潘→都江堰西缘→雅安→西昌→攀枝花→姚安→大理。走最好走的路，负责吸引南宋火力。</description>
+    <styleUrl>#eastStyle</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      103.50,34.00,0
+      103.70,32.88,0
+      103.60,32.65,0
+      103.62,30.99,0
+      103.04,29.98,0
+      102.26,27.88,0
+      101.71,26.58,0
+      101.23,25.50,0
+      100.16,25.69,0
+    </coordinates></LineString>
+  </Placemark>
+
+  <Placemark>
+    <name>上半场-中路主力（忽必烈）</name>
+    <description>1253年8-12月：达拉沟→若尔盖→红原→马尔康→金川→丹巴→康定→泸定→汉源渡大渡河→西昌→盐源→宁蒗→大理。1253年12月进云南。</description>
+    <styleUrl>#midStyle</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      103.50,34.00,0
+      102.95,33.57,0
+      102.54,32.79,0
+      102.22,31.90,0
+      102.06,31.47,0
+      102.18,30.87,0
+      101.96,30.05,0
+      102.23,29.91,0
+      102.65,29.34,0
+      102.26,27.88,0
+      101.51,27.42,0
+      100.85,27.28,0
+      100.16,25.69,0
+    </coordinates></LineString>
+  </Placemark>
+
+  <Placemark>
+    <name>上半场-西路大迂回（兀良合台）</name>
+    <description>1253年8-12月：达拉沟→壤塘→阿坝→炉霍→新龙→理塘→乡城→香格里拉→丽江→大理北门。绕得最远。</description>
+    <styleUrl>#westStyle</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      103.50,34.00,0
+      100.97,32.26,0
+      101.68,32.90,0
+      100.67,31.39,0
+      100.31,30.94,0
+      100.27,30.01,0
+      99.90,28.93,0
+      99.70,27.82,0
+      100.23,26.88,0
+      100.10,25.90,0
+      100.16,25.69,0
+    </coordinates></LineString>
+  </Placemark>
+
+  <Placemark>
+    <name>下半场-四川北线（蒙哥）</name>
+    <description>1258-1259年：陕西汉中→广元→剑阁→合川钓鱼城。蒙哥死在钓鱼城下，全军北返。</description>
+    <styleUrl>#southStyle</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      107.02,33.07,0
+      105.84,32.43,0
+      105.57,32.28,0
+      106.28,30.01,0
+      106.36,29.96,0
+    </coordinates></LineString>
+  </Placemark>
+
+  <Placemark>
+    <name>下半场-四川南线（云南北上）</name>
+    <description>1258-1259年：云南→宜宾→泸州→重庆→合州，与北线在钓鱼城会合，顺江夺船直趋重庆。</description>
+    <styleUrl>#southStyle</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      102.71,25.04,0
+      104.64,28.75,0
+      105.42,28.87,0
+      106.55,29.56,0
+      106.36,29.96,0
+    </coordinates></LineString>
+  </Placemark>
+
+  <Placemark>
+    <name>下半场-湖北北线（忽必烈、张柔）</name>
+    <description>1258-1259年：渡淮河→扫平江淮→渡长江→围鄂州（武昌）。拿下长沙武汉就掌握湖南湖北。</description>
+    <styleUrl>#southStyle</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      117.39,32.91,0
+      117.22,31.82,0
+      114.30,30.55,0
+    </coordinates></LineString>
+  </Placemark>
+
+  <Placemark>
+    <name>下半场-湖南南线（兀良合台）</name>
+    <description>1258-1259年：云南→南宁老苍关→桂林→怀化→长沙（潭州）。击溃宋军，围城月余，大小13战。</description>
+    <styleUrl>#southStyle</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      102.71,25.04,0
+      108.36,22.81,0
+      110.28,25.27,0
+      110.00,27.57,0
+      112.93,28.22,0
+    </coordinates></LineString>
+  </Placemark>
+
+  <Placemark>
+    <name>下半场-安南线（兀良合台1257-1258）</name>
+    <description>1257年兀良合台以云南为基地顺红河而下攻安南，1258年安南国王请降称臣。安南未入直接管辖只是属国，蒙古获借道权。后陈兴道两次击败蒙古，越南独立。</description>
+    <styleUrl>#southStyle</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      102.71,25.04,0
+      103.97,22.51,0
+      105.85,21.02,0
+    </coordinates></LineString>
+  </Placemark>
+
+  <Placemark>
+    <name>安南-河内1258年请降称臣</name>
+    <description>红河三角洲，安南中心。1258年国王请降，属国状态，蒙古获借道进攻南宋之权。后陈朝陈兴道两次击败蒙古。</description>
+    <Point><coordinates>105.85,21.02,0</coordinates></Point>
+  </Placemark>
+
+  <Placemark>
+    <name>下半场-安徽牵制（塔察尔）</name>
+    <description>1258-1259年：攻荆山怀远一带，不习水战，以牵制为主，让南宋分兵。</description>
+    <styleUrl>#southStyle</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      116.50,33.50,0
+      116.99,32.95,0
+    </coordinates></LineString>
+  </Placemark>
+
+  <Placemark>
+    <name>起点-临洮集结1253年8月</name>
+    <description>忽必烈在此备粮、发纸币、派使者劝降大理未果，随后南下达拉沟。</description>
+    <Point><coordinates>103.857,35.376,0</coordinates></Point>
+  </Placemark>
+  <Placemark>
+    <name>分兵点-达拉沟</name>
+    <description>今甘肃迭部附近，白龙江上游小盆地，一分为三。</description>
+    <Point><coordinates>103.50,34.00,0</coordinates></Point>
+  </Placemark>
+  <Placemark>
+    <name>中转-大理1253年12月</name>
+    <description>中路、西路进云南，随后拿下大理，成为包抄南宋的跳板。</description>
+    <Point><coordinates>100.16,25.69,0</coordinates></Point>
+  </Placemark>
+  <Placemark>
+    <name>湖南-长沙1259年围城</name>
+    <description>潭州，兀良合台从广西北上，击溃二十万守军，围城月余。</description>
+    <Point><coordinates>112.93,28.22,0</coordinates></Point>
+  </Placemark>
+  <Placemark>
+    <name>湖北-武昌1259年被围</name>
+    <description>鄂州，忽必烈、张柔渡江围城，与南线夹击湖南湖北。</description>
+    <Point><coordinates>114.30,30.55,0</coordinates></Point>
+  </Placemark>
+  <Placemark>
+    <name>结局-钓鱼城1259年8月蒙哥去世</name>
+    <description>四川合川钓鱼城，大汗死在这里，全军北返争汗位，南宋多活20年。</description>
+    <Point><coordinates>106.36,29.96,0</coordinates></Point>
+  </Placemark>
+
+</Document>
+</kml>

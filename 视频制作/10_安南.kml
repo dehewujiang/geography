@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+  <name>10_安南</name>
+  <Style id="eastStyle">
+    <LineStyle><color>ff0000ff</color><width>3</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+  <Style id="midStyle">
+    <LineStyle><color>ff00ff00</color><width>4</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+  <Style id="westStyle">
+    <LineStyle><color>ffff0000</color><width>4</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+  <Style id="southStyle">
+    <LineStyle><color>ff0080ff</color><width>3</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+
+<Placemark>
+    <name>下半场-安南线（兀良合台1257-1258）</name>
+    <description>1257年兀良合台以云南为基地顺红河而下攻安南，1258年安南国王请降称臣。安南未入直接管辖只是属国，蒙古获借道权。后陈兴道两次击败蒙古，越南独立。</description>
+    <styleUrl>#southStyle</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      102.71,25.04,0
+      103.97,22.51,0
+      105.85,21.02,0
+    </coordinates></LineString>
+  </Placemark>
+
+<Placemark>
+    <name>安南-河内1258年请降称臣</name>
+    <description>红河三角洲，安南中心。1258年国王请降，属国状态，蒙古获借道进攻南宋之权。后陈朝陈兴道两次击败蒙古。</description>
+    <Point><coordinates>105.85,21.02,0</coordinates></Point>
+  </Placemark>
+
+</Document>
+</kml>

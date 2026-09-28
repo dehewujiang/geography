@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+  <name>07_四川战场</name>
+  <Style id="eastStyle">
+    <LineStyle><color>ff0000ff</color><width>3</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+  <Style id="midStyle">
+    <LineStyle><color>ff00ff00</color><width>4</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+  <Style id="westStyle">
+    <LineStyle><color>ffff0000</color><width>4</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+  <Style id="southStyle">
+    <LineStyle><color>ff0080ff</color><width>3</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+
+<Placemark>
+    <name>下半场-四川北线1-金牛道（蒙哥）</name>
+    <description>1258-1259年：蒙哥主力走金牛道，陕西汉中→广元→剑阁→合川钓鱼城。蒙哥死在钓鱼城下，全军北返。</description>
+    <styleUrl>#southStyle</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      107.02,33.07,0
+      105.84,32.43,0
+      105.57,32.28,0
+      106.28,30.01,0
+      106.36,29.96,0
+    </coordinates></LineString>
+  </Placemark>
+
+<Placemark>
+    <name>下半场-四川北线2-米仓道（蒙哥分兵）</name>
+    <description>1258-1259年：分兵一路翻米仓山，汉中→南江→巴中→渠县→合州，与金牛道一路会师钓鱼城下。</description>
+    <styleUrl>#southStyle</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      107.02,33.07,0
+      106.84,32.35,0
+      106.75,31.87,0
+      106.97,30.84,0
+      106.28,30.01,0
+      106.36,29.96,0
+    </coordinates></LineString>
+  </Placemark>
+
+<Placemark>
+    <name>下半场-四川南线（云南北上）</name>
+    <description>1258-1259年：云南→宜宾→泸州→重庆→合州，与北线在钓鱼城会合，顺江夺船直趋重庆。</description>
+    <styleUrl>#southStyle</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      102.71,25.04,0
+      104.64,28.75,0
+      105.42,28.87,0
+      106.55,29.56,0
+      106.36,29.96,0
+    </coordinates></LineString>
+  </Placemark>
+
+<Placemark>
+    <name>结局-钓鱼城1259年8月蒙哥去世</name>
+    <description>四川合川钓鱼城，大汗死在这里，全军北返争汗位，南宋多活20年。</description>
+    <Point><coordinates>106.36,29.96,0</coordinates></Point>
+  </Placemark>
+
+</Document>
+</kml>

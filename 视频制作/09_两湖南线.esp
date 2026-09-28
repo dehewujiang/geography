@@ -1,0 +1,318 @@
+{
+    "modelVersion": 17,
+    "settings": {
+        "name": "09_两湖南线",
+        "frameRate": 30,
+        "dimensions": {
+            "width": 1920,
+            "height": 1080
+        },
+        "duration": 480,
+        "timeFormat": "frames"
+    },
+    "scenes": [
+        {
+            "world": {
+                "kmls": []
+            },
+            "animationModel": {
+                "roving": false,
+                "logarithmic": false,
+                "groupedPosition": true
+            },
+            "duration": 480,
+            "attributes": [
+                {
+                    "type": "cameraGroup",
+                    "inTimeline": true,
+                    "attributes": [
+                        {
+                            "type": "cameraPositionGroup",
+                            "inTimeline": true,
+                            "attributes": [
+                                {
+                                    "type": "longitude",
+                                    "value": {
+                                        "relative": 0,
+                                        "minValueRange": 102.71
+                                    },
+                                    "keyframes": [
+                                        {
+                                            "time": 0.0,
+                                            "value": 0.0
+                                        },
+                                        {
+                                            "time": 0.25,
+                                            "value": 0.07310130676672279
+                                        },
+                                        {
+                                            "time": 0.5,
+                                            "value": 0.09794281278302504
+                                        },
+                                        {
+                                            "time": 0.75,
+                                            "value": 0.09432009315564761
+                                        },
+                                        {
+                                            "time": 1.0,
+                                            "value": 0.1322292663992756
+                                        }
+                                    ],
+                                    "intimeline": true
+                                },
+                                {
+                                    "type": "latitude",
+                                    "value": {
+                                        "relative": 0,
+                                        "minValueRange": 22.81
+                                    },
+                                    "keyframes": [
+                                        {
+                                            "time": 0.0,
+                                            "value": 0.033189462717666325
+                                        },
+                                        {
+                                            "time": 0.25,
+                                            "value": 0.0
+                                        },
+                                        {
+                                            "time": 0.5,
+                                            "value": 0.03661259115939874
+                                        },
+                                        {
+                                            "time": 0.75,
+                                            "value": 0.07084387557672275
+                                        },
+                                        {
+                                            "time": 1.0,
+                                            "value": 0.08051793421640126
+                                        }
+                                    ],
+                                    "intimeline": true
+                                },
+                                {
+                                    "type": "altitude",
+                                    "value": {
+                                        "relative": 0,
+                                        "logarithmic": false
+                                    },
+                                    "keyframes": [
+                                        {
+                                            "time": 0.0,
+                                            "value": 0.0069105178574546434
+                                        },
+                                        {
+                                            "time": 0.25,
+                                            "value": 0.0069105178574546434
+                                        },
+                                        {
+                                            "time": 0.5,
+                                            "value": 0.0069105178574546434
+                                        },
+                                        {
+                                            "time": 0.75,
+                                            "value": 0.0069105178574546434
+                                        },
+                                        {
+                                            "time": 1.0,
+                                            "value": 0.0069105178574546434
+                                        }
+                                    ],
+                                    "intimeline": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "cameraTargetEffect",
+                            "attributes": [
+                                {
+                                    "type": "enabled",
+                                    "value": {}
+                                },
+                                {
+                                    "type": "poi",
+                                    "attributes": [
+                                        {
+                                            "type": "longitudePOI",
+                                            "value": {}
+                                        },
+                                        {
+                                            "type": "latitudePOI",
+                                            "value": {}
+                                        },
+                                        {
+                                            "type": "altitudePOI",
+                                            "value": {
+                                                "logarithmic": false
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "influence",
+                                    "value": {}
+                                }
+                            ]
+                        },
+                        {
+                            "type": "cameraRotationGroup",
+                            "inTimeline": true,
+                            "attributes": [
+                                {
+                                    "type": "rotationX",
+                                    "value": {
+                                        "relative": 0,
+                                        "minValueRange": -6.28236222957338,
+                                        "maxValueRange": 113.53960026518246
+                                    },
+                                    "keyframes": [
+                                        {
+                                            "time": 0.0,
+                                            "value": 1.0
+                                        },
+                                        {
+                                            "time": 0.3333333333333333,
+                                            "value": 0.350649371344055
+                                        },
+                                        {
+                                            "time": 0.6666666666666666,
+                                            "value": 0.0
+                                        },
+                                        {
+                                            "time": 1.0,
+                                            "value": 0.6862851800359095
+                                        }
+                                    ],
+                                    "intimeline": true
+                                },
+                                {
+                                    "type": "rotationY",
+                                    "value": {
+                                        "relative": 0
+                                    },
+                                    "keyframes": [
+                                        {
+                                            "time": 0.0,
+                                            "value": 0.25
+                                        },
+                                        {
+                                            "time": 1.0,
+                                            "value": 0.25
+                                        }
+                                    ],
+                                    "intimeline": true
+                                },
+                                {
+                                    "type": "rotationZ",
+                                    "value": {}
+                                }
+                            ]
+                        },
+                        {
+                            "type": "cameraLensGroup",
+                            "attributes": [
+                                {
+                                    "type": "fov",
+                                    "value": {}
+                                },
+                                {
+                                    "type": "exposure",
+                                    "value": {}
+                                },
+                                {
+                                    "type": "aperture",
+                                    "value": {}
+                                },
+                                {
+                                    "type": "minFocusLength",
+                                    "value": {}
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "environmentGroup",
+                    "attributes": [
+                        {
+                            "type": "sunGroup",
+                            "attributes": [
+                                {
+                                    "type": "sunVisibility",
+                                    "value": {}
+                                },
+                                {
+                                    "type": "worldTime",
+                                    "value": {
+                                        "relative": 0.5
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "cloudGroup",
+                            "attributes": [
+                                {
+                                    "type": "cloudVisibility",
+                                    "value": {}
+                                },
+                                {
+                                    "type": "cloudopacity",
+                                    "value": {}
+                                },
+                                {
+                                    "type": "cloudheight",
+                                    "value": {}
+                                },
+                                {
+                                    "type": "clouddate",
+                                    "value": {
+                                        "relative": 0.9545454545454546
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "starsPlanetsGroup",
+                            "attributes": [
+                                {
+                                    "type": "starsEnabled",
+                                    "value": {}
+                                }
+                            ]
+                        },
+                        {
+                            "type": "seawaterGroup",
+                            "attributes": [
+                                {
+                                    "type": "seawater",
+                                    "value": {}
+                                },
+                                {
+                                    "type": "influence",
+                                    "value": {
+                                        "relative": 1
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "buildingsEnabled",
+                            "value": {}
+                        }
+                    ]
+                }
+            ],
+            "cameraExport": {
+                "logarithmic": false,
+                "modelVersion": 2
+            }
+        }
+    ],
+    "playbackManager": {
+        "range": {
+            "start": 0,
+            "end": 480
+        }
+    }
+}

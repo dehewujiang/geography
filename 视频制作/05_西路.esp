@@ -1,0 +1,414 @@
+{
+    "modelVersion": 17,
+    "settings": {
+        "name": "05_西路",
+        "frameRate": 30,
+        "dimensions": {
+            "width": 1920,
+            "height": 1080
+        },
+        "duration": 600,
+        "timeFormat": "frames"
+    },
+    "scenes": [
+        {
+            "world": {
+                "kmls": []
+            },
+            "animationModel": {
+                "roving": false,
+                "logarithmic": false,
+                "groupedPosition": true
+            },
+            "duration": 600,
+            "attributes": [
+                {
+                    "type": "cameraGroup",
+                    "inTimeline": true,
+                    "attributes": [
+                        {
+                            "type": "cameraPositionGroup",
+                            "inTimeline": true,
+                            "attributes": [
+                                {
+                                    "type": "longitude",
+                                    "value": {
+                                        "relative": 0,
+                                        "minValueRange": 99.7
+                                    },
+                                    "keyframes": [
+                                        {
+                                            "time": 0.0,
+                                            "value": 0.047322540473225365
+                                        },
+                                        {
+                                            "time": 0.1,
+                                            "value": 0.024657534246575387
+                                        },
+                                        {
+                                            "time": 0.2,
+                                            "value": 0.01581569115815686
+                                        },
+                                        {
+                                            "time": 0.3,
+                                            "value": 0.012079701120796996
+                                        },
+                                        {
+                                            "time": 0.4,
+                                            "value": 0.007596513075965122
+                                        },
+                                        {
+                                            "time": 0.5,
+                                            "value": 0.007098381070983725
+                                        },
+                                        {
+                                            "time": 0.6,
+                                            "value": 0.0024906600249066354
+                                        },
+                                        {
+                                            "time": 0.7,
+                                            "value": 0.0
+                                        },
+                                        {
+                                            "time": 0.8,
+                                            "value": 0.006600249066002504
+                                        },
+                                        {
+                                            "time": 0.9,
+                                            "value": 0.004981320049813094
+                                        },
+                                        {
+                                            "time": 1.0,
+                                            "value": 0.005728518057285102
+                                        }
+                                    ],
+                                    "intimeline": true
+                                },
+                                {
+                                    "type": "latitude",
+                                    "value": {
+                                        "relative": 0,
+                                        "minValueRange": 25.69
+                                    },
+                                    "keyframes": [
+                                        {
+                                            "time": 0.0,
+                                            "value": 0.12921785103405378
+                                        },
+                                        {
+                                            "time": 0.1,
+                                            "value": 0.11211320167936553
+                                        },
+                                        {
+                                            "time": 0.2,
+                                            "value": 0.10216140569118327
+                                        },
+                                        {
+                                            "time": 0.3,
+                                            "value": 0.08863318301974808
+                                        },
+                                        {
+                                            "time": 0.4,
+                                            "value": 0.08163582646555745
+                                        },
+                                        {
+                                            "time": 0.5,
+                                            "value": 0.06717462292023013
+                                        },
+                                        {
+                                            "time": 0.6,
+                                            "value": 0.05038096719017258
+                                        },
+                                        {
+                                            "time": 0.7,
+                                            "value": 0.03312082102316901
+                                        },
+                                        {
+                                            "time": 0.8,
+                                            "value": 0.01850412066552632
+                                        },
+                                        {
+                                            "time": 0.9,
+                                            "value": 0.0032654330586222562
+                                        },
+                                        {
+                                            "time": 1.0,
+                                            "value": 0.0
+                                        }
+                                    ],
+                                    "intimeline": true
+                                },
+                                {
+                                    "type": "altitude",
+                                    "value": {
+                                        "relative": 0,
+                                        "logarithmic": false
+                                    },
+                                    "keyframes": [
+                                        {
+                                            "time": 0.0,
+                                            "value": 0.0069105178574546434
+                                        },
+                                        {
+                                            "time": 0.1,
+                                            "value": 0.0069105178574546434
+                                        },
+                                        {
+                                            "time": 0.2,
+                                            "value": 0.0069105178574546434
+                                        },
+                                        {
+                                            "time": 0.3,
+                                            "value": 0.0069105178574546434
+                                        },
+                                        {
+                                            "time": 0.4,
+                                            "value": 0.0069105178574546434
+                                        },
+                                        {
+                                            "time": 0.5,
+                                            "value": 0.0069105178574546434
+                                        },
+                                        {
+                                            "time": 0.6,
+                                            "value": 0.0069105178574546434
+                                        },
+                                        {
+                                            "time": 0.7,
+                                            "value": 0.0069105178574546434
+                                        },
+                                        {
+                                            "time": 0.8,
+                                            "value": 0.0069105178574546434
+                                        },
+                                        {
+                                            "time": 0.9,
+                                            "value": 0.0069105178574546434
+                                        },
+                                        {
+                                            "time": 1.0,
+                                            "value": 0.0069105178574546434
+                                        }
+                                    ],
+                                    "intimeline": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "cameraTargetEffect",
+                            "attributes": [
+                                {
+                                    "type": "enabled",
+                                    "value": {}
+                                },
+                                {
+                                    "type": "poi",
+                                    "attributes": [
+                                        {
+                                            "type": "longitudePOI",
+                                            "value": {}
+                                        },
+                                        {
+                                            "type": "latitudePOI",
+                                            "value": {}
+                                        },
+                                        {
+                                            "type": "altitudePOI",
+                                            "value": {
+                                                "logarithmic": false
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "influence",
+                                    "value": {}
+                                }
+                            ]
+                        },
+                        {
+                            "type": "cameraRotationGroup",
+                            "inTimeline": true,
+                            "attributes": [
+                                {
+                                    "type": "rotationX",
+                                    "value": {
+                                        "relative": 0,
+                                        "minValueRange": -206.5036559823036,
+                                        "maxValueRange": -126.09327706442892
+                                    },
+                                    "keyframes": [
+                                        {
+                                            "time": 0.0,
+                                            "value": 1.0
+                                        },
+                                        {
+                                            "time": 0.1111111111111111,
+                                            "value": 0.8639568611226213
+                                        },
+                                        {
+                                            "time": 0.2222222222222222,
+                                            "value": 0.5317751762591841
+                                        },
+                                        {
+                                            "time": 0.3333333333333333,
+                                            "value": 0.7565360126758008
+                                        },
+                                        {
+                                            "time": 0.4444444444444444,
+                                            "value": 0.35587909566791265
+                                        },
+                                        {
+                                            "time": 0.5555555555555556,
+                                            "value": 0.5350973702608557
+                                        },
+                                        {
+                                            "time": 0.6666666666666666,
+                                            "value": 0.44105199393685324
+                                        },
+                                        {
+                                            "time": 0.7777777777777778,
+                                            "value": 0.0
+                                        },
+                                        {
+                                            "time": 0.8888888888888888,
+                                            "value": 0.41352317109305226
+                                        },
+                                        {
+                                            "time": 1.0,
+                                            "value": 0.1503496624720487
+                                        }
+                                    ],
+                                    "intimeline": true
+                                },
+                                {
+                                    "type": "rotationY",
+                                    "value": {
+                                        "relative": 0
+                                    },
+                                    "keyframes": [
+                                        {
+                                            "time": 0.0,
+                                            "value": 0.25
+                                        },
+                                        {
+                                            "time": 1.0,
+                                            "value": 0.25
+                                        }
+                                    ],
+                                    "intimeline": true
+                                },
+                                {
+                                    "type": "rotationZ",
+                                    "value": {}
+                                }
+                            ]
+                        },
+                        {
+                            "type": "cameraLensGroup",
+                            "attributes": [
+                                {
+                                    "type": "fov",
+                                    "value": {}
+                                },
+                                {
+                                    "type": "exposure",
+                                    "value": {}
+                                },
+                                {
+                                    "type": "aperture",
+                                    "value": {}
+                                },
+                                {
+                                    "type": "minFocusLength",
+                                    "value": {}
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "environmentGroup",
+                    "attributes": [
+                        {
+                            "type": "sunGroup",
+                            "attributes": [
+                                {
+                                    "type": "sunVisibility",
+                                    "value": {}
+                                },
+                                {
+                                    "type": "worldTime",
+                                    "value": {
+                                        "relative": 0.5
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "cloudGroup",
+                            "attributes": [
+                                {
+                                    "type": "cloudVisibility",
+                                    "value": {}
+                                },
+                                {
+                                    "type": "cloudopacity",
+                                    "value": {}
+                                },
+                                {
+                                    "type": "cloudheight",
+                                    "value": {}
+                                },
+                                {
+                                    "type": "clouddate",
+                                    "value": {
+                                        "relative": 0.9545454545454546
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "starsPlanetsGroup",
+                            "attributes": [
+                                {
+                                    "type": "starsEnabled",
+                                    "value": {}
+                                }
+                            ]
+                        },
+                        {
+                            "type": "seawaterGroup",
+                            "attributes": [
+                                {
+                                    "type": "seawater",
+                                    "value": {}
+                                },
+                                {
+                                    "type": "influence",
+                                    "value": {
+                                        "relative": 1
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "buildingsEnabled",
+                            "value": {}
+                        }
+                    ]
+                }
+            ],
+            "cameraExport": {
+                "logarithmic": false,
+                "modelVersion": 2
+            }
+        }
+    ],
+    "playbackManager": {
+        "range": {
+            "start": 0,
+            "end": 600
+        }
+    }
+}

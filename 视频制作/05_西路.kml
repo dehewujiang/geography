@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+  <name>05_西路</name>
+  <Style id="eastStyle">
+    <LineStyle><color>ff0000ff</color><width>3</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+  <Style id="midStyle">
+    <LineStyle><color>ff00ff00</color><width>4</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+  <Style id="westStyle">
+    <LineStyle><color>ffff0000</color><width>4</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+  <Style id="southStyle">
+    <LineStyle><color>ff0080ff</color><width>3</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+
+<Placemark>
+    <name>上半场-西路大迂回（兀良合台）</name>
+    <description>1253年8-12月：达拉沟→阿坝→壤塘→炉霍→新龙→理塘→乡城→香格里拉→丽江→大理北门。绕得最远。</description>
+    <styleUrl>#westStyle</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      103.50,34.00,0
+      101.68,32.90,0
+      100.97,32.26,0
+      100.67,31.39,0
+      100.31,30.94,0
+      100.27,30.01,0
+      99.90,28.93,0
+      99.70,27.82,0
+      100.23,26.88,0
+      100.10,25.90,0
+      100.16,25.69,0
+    </coordinates></LineString>
+  </Placemark>
+
+<Placemark>
+    <name>分兵点-达拉沟</name>
+    <description>今甘肃迭部附近，白龙江上游小盆地，一分为三。</description>
+    <Point><coordinates>103.50,34.00,0</coordinates></Point>
+  </Placemark>
+
+<Placemark>
+    <name>中转-大理1253年12月</name>
+    <description>中路、西路进云南，随后拿下大理，成为包抄南宋的跳板。</description>
+    <Point><coordinates>100.16,25.69,0</coordinates></Point>
+  </Placemark>
+
+</Document>
+</kml>

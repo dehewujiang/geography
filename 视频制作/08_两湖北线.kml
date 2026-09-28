@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+  <name>08_两湖北线</name>
+  <Style id="eastStyle">
+    <LineStyle><color>ff0000ff</color><width>3</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+  <Style id="midStyle">
+    <LineStyle><color>ff00ff00</color><width>4</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+  <Style id="westStyle">
+    <LineStyle><color>ffff0000</color><width>4</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+  <Style id="southStyle">
+    <LineStyle><color>ff0080ff</color><width>3</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+
+<Placemark>
+    <name>下半场-湖北北线（忽必烈、张柔）</name>
+    <description>1258-1259年：渡淮河→扫平江淮→渡长江→围鄂州（武昌）。拿下长沙武汉就掌握湖南湖北。</description>
+    <styleUrl>#southStyle</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      117.39,32.91,0
+      117.22,31.82,0
+      114.30,30.55,0
+    </coordinates></LineString>
+  </Placemark>
+
+<Placemark>
+    <name>湖北-武昌1259年被围</name>
+    <description>鄂州，忽必烈、张柔渡江围城，与南线夹击湖南湖北。</description>
+    <Point><coordinates>114.30,30.55,0</coordinates></Point>
+  </Placemark>
+
+</Document>
+</kml>

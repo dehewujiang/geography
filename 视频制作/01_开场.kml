@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+  <name>01_开场</name>
+  <Style id="eastStyle">
+    <LineStyle><color>ff0000ff</color><width>3</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+  <Style id="midStyle">
+    <LineStyle><color>ff00ff00</color><width>4</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+  <Style id="westStyle">
+    <LineStyle><color>ffff0000</color><width>4</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+  <Style id="southStyle">
+    <LineStyle><color>ff0080ff</color><width>3</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+
+  <Placemark>
+    <name>集结·临洮至达拉沟</name>
+    <description>1253年8月，忽必烈在临洮集结后，翻越迭山、岷山前往达拉沟分兵点。</description>
+    <styleUrl>#southStyle</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      103.857,35.376,0
+      103.50,34.00,0
+    </coordinates></LineString>
+  </Placemark>
+
+<Placemark>
+    <name>起点-临洮集结1253年8月</name>
+    <description>忽必烈在此备粮、发纸币、派使者劝降大理未果，随后南下达拉沟。</description>
+    <Point><coordinates>103.857,35.376,0</coordinates></Point>
+  </Placemark>
+
+<Placemark>
+    <name>分兵点-达拉沟</name>
+    <description>今甘肃迭部附近，白龙江上游小盆地，一分为三。</description>
+    <Point><coordinates>103.50,34.00,0</coordinates></Point>
+  </Placemark>
+
+</Document>
+</kml>

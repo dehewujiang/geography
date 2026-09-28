@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+  <name>02_三路全景</name>
+  <Style id="eastStyle">
+    <LineStyle><color>ff0000ff</color><width>3</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+  <Style id="midStyle">
+    <LineStyle><color>ff00ff00</color><width>4</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+  <Style id="westStyle">
+    <LineStyle><color>ffff0000</color><width>4</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+  <Style id="southStyle">
+    <LineStyle><color>ff0080ff</color><width>3</width></LineStyle>
+    <PolyStyle><fill>0</fill></PolyStyle>
+  </Style>
+
+<Placemark>
+    <name>上半场-东路牵制（抄合、也只烈）</name>
+    <description>1253年8-12月：达拉沟→黄胜关→松潘→都江堰西缘→雅安→西昌→攀枝花→姚安→大理。走最好走的路，负责吸引南宋火力。</description>
+    <styleUrl>#eastStyle</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      103.50,34.00,0
+      103.70,32.88,0
+      103.60,32.65,0
+      103.62,30.99,0
+      103.04,29.98,0
+      102.26,27.88,0
+      101.71,26.58,0
+      101.23,25.50,0
+      100.16,25.69,0
+    </coordinates></LineString>
+  </Placemark>
+
+<Placemark>
+    <name>上半场-中路主力（忽必烈）</name>
+    <description>1253年8-12月：达拉沟→若尔盖→红原→马尔康→金川→丹巴→康定→泸定→汉源渡大渡河→西昌→盐源→宁蒗→大理。1253年12月进云南。</description>
+    <styleUrl>#midStyle</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      103.50,34.00,0
+      102.95,33.57,0
+      102.54,32.79,0
+      102.22,31.90,0
+      102.06,31.47,0
+      102.18,30.87,0
+      101.96,30.05,0
+      102.23,29.91,0
+      102.65,29.34,0
+      102.26,27.88,0
+      101.51,27.42,0
+      100.85,27.28,0
+      100.16,25.69,0
+    </coordinates></LineString>
+  </Placemark>
+
+<Placemark>
+    <name>上半场-西路大迂回（兀良合台）</name>
+    <description>1253年8-12月：达拉沟→阿坝→壤塘→炉霍→新龙→理塘→乡城→香格里拉→丽江→大理北门。绕得最远。</description>
+    <styleUrl>#westStyle</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      103.50,34.00,0
+      101.68,32.90,0
+      100.97,32.26,0
+      100.67,31.39,0
+      100.31,30.94,0
+      100.27,30.01,0
+      99.90,28.93,0
+      99.70,27.82,0
+      100.23,26.88,0
+      100.10,25.90,0
+      100.16,25.69,0
+    </coordinates></LineString>
+  </Placemark>
+
+<Placemark>
+    <name>分兵点-达拉沟</name>
+    <description>今甘肃迭部附近，白龙江上游小盆地，一分为三。</description>
+    <Point><coordinates>103.50,34.00,0</coordinates></Point>
+  </Placemark>
+
+<Placemark>
+    <name>中转-大理1253年12月</name>
+    <description>中路、西路进云南，随后拿下大理，成为包抄南宋的跳板。</description>
+    <Point><coordinates>100.16,25.69,0</coordinates></Point>
+  </Placemark>
+
+</Document>
+</kml>
