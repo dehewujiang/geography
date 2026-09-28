@@ -13,8 +13,8 @@
 | 类型 | 数量 | 属性 |
 |---|---|---|
 | `XX_*.esp` | 11 | **生成物**：由根目录 `make_video_assets.py generate` 重写；严禁手改数值 |
-| `XX_*.kml` | 11 | **既有成品**：脚本不生成、不修改 |
+| `XX_*.kml` | 11 | 路线图层（成品）：`generate-kml` 可从母版重剪（逐字节复刻现状），正常无需动 |
 
-- 镜头参数（路点/高度/俯角/时长）唯一来源：`../make_video_assets.py` 的 `CLIPS` 表。
+- 镜头参数（路点/高度/俯角/时长）唯一来源：`../make_video_assets.py` 的 `CLIPS` 表（含 .kml 剪取规格）；重剪 .kml 用 `python make_video_assets.py generate-kml`。
 - 改完自检：根目录执行 `python make_video_assets.py verify`，须通过（退出码 0）。
 - 对每个片段的解说、验收方式、GES 编码规范、故障症状→修法：见上级文档 `../CLAUDE.md`。

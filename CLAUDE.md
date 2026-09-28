@@ -13,16 +13,17 @@
 |---|---|
 | `蒙古大迂回_三路路线.kml` | **母版**：17 个地标（7 条路线 + 10 个地点），全项目唯一坐标来源；改路线只改这里。脚本硬断言地标数=17，增删地标须同步改断言 |
 | `视频制作/XX_*.esp` | GES 相机动画工程（生成物，勿手改） |
-| `视频制作/XX_*.kml` | 路线图层（既有成品；脚本不生成、也不要改） |
-| `make_video_assets.py` | 生成器 + 校验器（纯标准库；**别装 numpy 等依赖**） |
+| `视频制作/XX_*.kml` | 路线图层（成品；`generate-kml` 可从母版重剪、与现状逐字节一致——正常流程无需动） |
+| `make_video_assets.py` | 生成器 + 重剪器 + 校验器（纯标准库；**别装 numpy 等依赖**） |
 | `kml.json` | 早期会话导出记录（研究物，与流程无关，勿删勿用） |
 | `蒙古大迂回_三路路线_备份20260928.kml.bak` | 用户保留的母版备份，勿删 |
 
 ## 命令（Windows PowerShell）
 
 ```powershell
-python make_video_assets.py generate   # 重写全部 11 个 .esp（从不生成/修改 .kml）
-python make_video_assets.py verify     # 回归校验：解码值与路线/方位逐项比对；退出码 0=通过
+python make_video_assets.py generate      # 重写全部 11 个 .esp
+python make_video_assets.py generate-kml  # 从母版重剪 11 个 .kml（与既有成品逐字节一致）
+python make_video_assets.py verify        # 回归校验：解码值与路线/方位逐项比对；退出码 0=通过
 ```
 
 - 中文输出乱码时前缀：`$env:PYTHONIOENCODING='utf-8'; [Console]::OutputEncoding=[System.Text.Encoding]::UTF8;`
@@ -44,7 +45,7 @@ python make_video_assets.py verify     # 回归校验：解码值与路线/方�
 - **禁止**：自定义区间归一化 / 只写 min / 负值——2026-09-28 的 v1 全踩了，导致镜头方向反向、位置乱飞（旧版在 git 历史有档）。
 - 文件骨架（modelVersion 17 属性树）**不可动**，只动数值；当前骨架已实测可导入 GES。
 - 编码依据与完整调研结论见 `make_video_assets.py` 头部 [PROTOCOL]——**不要重新调研**；尤其弃用 mkatzef/google-studio-utils 旧编码（v1 的坑）。
-- 调镜头（高度/俯角/时长/路点）→ 只改脚本 `CLIPS` 表 → `generate` → `verify`。参数唯一来源是脚本，永远不手改 .esp。
+- 调镜头（高度/俯角/时长/路点）→ 只改脚本 `CLIPS` 表 → `generate` → `verify`。参数唯一来源是脚本，永远不手改 .esp；.kml 剪取规格也在 `CLIPS` 表 `kml` 字段，重剪用 `generate-kml`。
 
 ## GES 验收只能由用户完成
 
@@ -55,7 +56,7 @@ python make_video_assets.py verify     # 回归校验：解码值与路线/方�
 ## 操作纪律
 
 - 动手前先提交 checkpoint（`git add -A; git commit -m "checkpoint: ..."`）；git 仅作本机回退锚点，用户不用 git。
-- 母版 KML、`视频制作/*.kml`、`.bak`、`kml.json` 只读；删除/覆盖等不可逆操作先问用户。
+- 母版 KML、`.bak`、`kml.json` 只读；`视频制作/*.kml` 不手改（改剪法 → 改脚本 → `generate-kml` 重剪）；删除等不可逆操作先问用户。
 - 项目在坚果云同步：改完文件后，用户需等同步完成再在 GES 里测试。
 
 ## 文档体系（L1/L2/L3，任何 AI 的导航）

@@ -2,9 +2,10 @@
 r"""
 make_video_assets.py — 《蒙古大迂回》GES 视频素材生成器 v2（镜头朝向修正版）
 [INPUT]: 蒙古大迂回_三路路线.kml（只读，取"东路/中路/西路"三条路线坐标）；下方 CLIPS 表（镜头设计参数）
-[OUTPUT]: 视频制作\XX_*.esp 共 11 个相机动画工程文件（只重写 .esp，不触碰 .kml）
+[OUTPUT]: 视频制作\XX_*.esp 共 11 个相机动画工程文件（generate 重写）；XX_*.kml 共 11 个路线图层（generate-kml 从母版重剪，逐字节复刻既有成品）
 [POS]: 项目根目录工具脚本；v1（2026-09-28 初版）的修正版——v1 用了 GES 不认的私有数值编码（按自定义
         min/max 归一化、缺 maxValueRange、水平转向为负值），导致导入 GES 后镜头方向错乱/反向。
+        2026-09-29 并入 .kml 重剪（generate-kml；规则迁自首版临时工具，重剪结果与既有 11 份逐字节一致）。
 [PROTOCOL]: 数值编码规范（改动前必读）——
         GES modelVersion 17 关键帧值 = (实际值 - 区间下限) / (区间上限 - 区间下限)，区间一律用标准区间：
           经度 [-180,180]  纬度 [-89.9999,89.9999]  高度 [-500,65117481]（米）
@@ -14,12 +15,14 @@ make_video_assets.py — 《蒙古大迂回》GES 视频素材生成器 v2（镜
         Google Maps 相机 bearing/tilt 官方定义。修改本文件后必须重跑 verify 并让用户重测 02。
 用法：
     python make_video_assets.py generate      # 重新生成 11 个 .esp 到 视频制作/
+    python make_video_assets.py generate-kml [目录]  # 从母版重剪 11 个 .kml（含开场集结线特例；11_终章=母版整份）
     python make_video_assets.py verify [目录]  # 校验解码正确性，默认校验 视频制作/
 """
 import json
 import math
 import os
 import re
+import shutil
 import sys
 
 BASE = os.path.dirname(os.path.abspath(__file__))
@@ -32,28 +35,51 @@ ALT = (-500.0, 65117481.0)
 PAN = (0.0, 360.0)
 TILT = (0.0, 180.0)
 
-# ---- 镜头设计表：base=文件名前缀 cam=[(经度,纬度)...] 按飞行顺序 ----
+# ---- 镜头设计表：base=文件名前缀 cam=[(经度,纬度)...] 按飞行顺序；kml=.kml 剪取规格（None=母版整份） ----
 CLIPS = [
     dict(base="01_开场", cam=[(104.30, 36.30), (103.857, 35.376), (103.50, 34.00)],
-         alt=200000, tilt=55, dur=240),
+         alt=200000, tilt=55, dur=240,
+         kml=["开场集结线", "临洮", "达拉沟"]),
     dict(base="02_三路全景", cam=[(103.50, 34.00), (102.00, 30.00), (100.16, 25.69)],
-         alt=900000, tilt=50, dur=300),
-    dict(base="03_东路", cam="东路", alt=450000, tilt=45, dur=600),
-    dict(base="04_中路", cam="中路", alt=450000, tilt=45, dur=600),
-    dict(base="05_西路", cam="西路", alt=450000, tilt=45, dur=600),
+         alt=900000, tilt=50, dur=300,
+         kml=["东路", "中路", "西路", "分兵点", "中转"]),
+    dict(base="03_东路", cam="东路", alt=450000, tilt=45, dur=600,
+         kml=["东路", "分兵点", "中转"]),
+    dict(base="04_中路", cam="中路", alt=450000, tilt=45, dur=600,
+         kml=["中路", "分兵点", "中转"]),
+    dict(base="05_西路", cam="西路", alt=450000, tilt=45, dur=600,
+         kml=["西路", "分兵点", "中转"]),
     dict(base="06_大理会师", cam=[(102.26, 27.88), (101.51, 27.42), (100.85, 27.28), (100.16, 25.69)],
-         alt=250000, tilt=40, dur=270),
+         alt=250000, tilt=40, dur=270,
+         kml=["东路", "中路", "西路", "分兵点", "中转"]),
     dict(base="07_四川战场", cam=[(107.02, 33.07), (105.84, 32.43), (105.57, 32.28), (106.36, 29.96)],
-         alt=400000, tilt=45, dur=480),
+         alt=400000, tilt=45, dur=480,
+         kml=["金牛道", "米仓道", "四川南线", "结局"]),
     dict(base="08_两湖北线", cam=[(117.39, 32.91), (117.22, 31.82), (114.30, 30.55)],
-         alt=300000, tilt=45, dur=300),
+         alt=300000, tilt=45, dur=300,
+         kml=["湖北北线", "武昌"]),
     dict(base="09_两湖南线", cam=[(102.71, 25.04), (108.36, 22.81), (110.28, 25.27), (110.00, 27.57), (112.93, 28.22)],
-         alt=450000, tilt=45, dur=480),
+         alt=450000, tilt=45, dur=480,
+         kml=["湖南南线", "长沙"]),
     dict(base="10_安南", cam=[(102.71, 25.04), (103.97, 22.51), (105.85, 21.02)],
-         alt=350000, tilt=50, dur=300),
+         alt=350000, tilt=50, dur=300,
+         kml=["安南线", "河内"]),
     dict(base="11_终章", cam=[(107.80, 33.30), (106.90, 31.50), (106.36, 29.96)],
-         alt=450000, tilt=45, dur=330),
+         alt=450000, tilt=45, dur=330,
+         kml=None),
 ]
+
+
+# 开场集结线：母版中没有这条线（临洮 -> 达拉沟），仅 01_开场 的 .kml 追加使用
+OPENING_LINE = """  <Placemark>
+    <name>集结·临洮至达拉沟</name>
+    <description>1253年8月，忽必烈在临洮集结后，翻越迭山、岷山前往达拉沟分兵点。</description>
+    <styleUrl>#southStyle</styleUrl>
+    <LineString><tessellate>1</tessellate><coordinates>
+      103.857,35.376,0
+      103.50,34.00,0
+    </coordinates></LineString>
+  </Placemark>"""
 
 
 def norm(value, rng):
@@ -107,8 +133,8 @@ def block(label, rng, actuals, extra=None):
 def parse_master():
     xml = open(MASTER, encoding="utf-8").read()
     places = {}
-    for m in re.finditer(r"<Placemark>(.*?)</Placemark>", xml, re.S):
-        blk = m.group(1)
+    for m in re.finditer(r"<Placemark>.*?</Placemark>", xml, re.S):
+        blk = m.group(0)  # 保留 Placemark 原文块，供 .kml 重剪时整块搬运
         nm = re.search(r"<name>(.*?)</name>", blk, re.S)
         name = nm.group(1).strip() if nm else ""
         cm = re.search(r"<coordinates>(.*?)</coordinates>", blk, re.S)
@@ -116,16 +142,16 @@ def parse_master():
         if cm:
             coords = [tuple(map(float, ln.strip().split(",")[:2]))
                       for ln in cm.group(1).strip().splitlines() if ln.strip()]
-        places[name] = coords
+        places[name] = {"coords": coords, "text": blk}
     assert len(places) == 17, f"母版 KML 应含 17 个地标，实际 {len(places)}"
     return places
 
 
 def pm(places, keyword):
-    """按关键字找母版里的路线坐标"""
-    for name, coords in places.items():
+    """按关键字找母版里的地标（返回 {coords, text}）"""
+    for name, place in places.items():
         if keyword in name:
-            return coords
+            return place
     raise KeyError(f"母版中找不到含「{keyword}」的地标")
 
 
@@ -198,7 +224,7 @@ def resolve_cams():
     places = parse_master()
     out = []
     for clip in CLIPS:
-        cam = pm(places, clip["cam"]) if isinstance(clip["cam"], str) else clip["cam"]
+        cam = pm(places, clip["cam"])["coords"] if isinstance(clip["cam"], str) else clip["cam"]
         out.append((clip, cam))
     return out
 
@@ -213,6 +239,46 @@ def generate():
         dirs = " ".join(f"{p:.1f}°" for p in pans)
         print(f"OK {clip['base']}: {len(cam)}点 方位[{dirs}] alt={clip['alt']}m tilt={clip['tilt']}° dur={clip['dur']}f")
     print(f"\n已重写 {len(CLIPS)} 个 .esp -> {OUT_DIR}")
+
+
+# -------- .kml 重剪（剪取规则 2026-09-29 自首版临时工具并入；与既有成品逐字节一致） --------
+
+def kml_styles(xml):
+    """母版中 Placemark 之前的样式定义段（沿用首版工具同一剪法）"""
+    return xml[xml.rfind("\n", 0, xml.index("<Style id=")) + 1: xml.index("<Placemark>")].rstrip() + "\n\n"
+
+
+def kml_wrap(title, styles, body_blocks):
+    return (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<kml xmlns="http://www.opengis.net/kml/2.2">\n'
+        "<Document>\n"
+        f"  <name>{title}</name>\n"
+        + styles
+        + "\n\n".join(body_blocks)
+        + "\n\n</Document>\n</kml>\n"
+    )
+
+
+def kml_blocks_for(places, specs):
+    """规格 -> 正文块：'开场集结线' 用追加块，其余取母版原文"""
+    return [OPENING_LINE if spec == "开场集结线" else pm(places, spec)["text"] for spec in specs]
+
+
+def generate_kmls(target=OUT_DIR):
+    xml = open(MASTER, encoding="utf-8").read()
+    places = parse_master()
+    styles = kml_styles(xml)
+    for clip in CLIPS:
+        path = os.path.join(target, clip["base"] + ".kml")
+        if clip["kml"] is None:
+            shutil.copyfile(MASTER, path)  # 11_终章：母版整份复制
+        else:
+            with open(path, "w", encoding="utf-8") as f:
+                f.write(kml_wrap(clip["base"], styles, kml_blocks_for(places, clip["kml"])))
+        print(f"OK {clip['base']}.kml")
+    print(f"\n已重剪 {len(CLIPS)} 个 .kml -> {target}")
+    return 0
 
 
 # ---------------- 校验 ----------------
@@ -323,6 +389,9 @@ def main():
     if len(sys.argv) >= 2 and sys.argv[1] == "generate":
         generate()
         return 0
+    if len(sys.argv) >= 2 and sys.argv[1] == "generate-kml":
+        target = sys.argv[2] if len(sys.argv) >= 3 else OUT_DIR
+        return generate_kmls(target)
     if len(sys.argv) >= 2 and sys.argv[1] == "verify":
         target = sys.argv[2] if len(sys.argv) >= 3 else OUT_DIR
         return verify_dir(target)
