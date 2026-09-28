@@ -33,29 +33,30 @@
                                 {
                                     "type": "longitude",
                                     "value": {
-                                        "relative": 0,
-                                        "minValueRange": 102.71
+                                        "minValueRange": -180.0,
+                                        "maxValueRange": 180.0,
+                                        "relative": 0.7853055555555555
                                     },
                                     "keyframes": [
                                         {
                                             "time": 0.0,
-                                            "value": 0.0
+                                            "value": 0.7853055555555555
                                         },
                                         {
                                             "time": 0.25,
-                                            "value": 0.07310130676672279
+                                            "value": 0.801
                                         },
                                         {
                                             "time": 0.5,
-                                            "value": 0.09794281278302504
+                                            "value": 0.8063333333333332
                                         },
                                         {
                                             "time": 0.75,
-                                            "value": 0.09432009315564761
+                                            "value": 0.8055555555555556
                                         },
                                         {
                                             "time": 1.0,
-                                            "value": 0.1322292663992756
+                                            "value": 0.8136944444444445
                                         }
                                     ],
                                     "intimeline": true
@@ -63,29 +64,30 @@
                                 {
                                     "type": "latitude",
                                     "value": {
-                                        "relative": 0,
-                                        "minValueRange": 22.81
+                                        "minValueRange": -89.9999,
+                                        "maxValueRange": 89.9999,
+                                        "relative": 0.6391112656791841
                                     },
                                     "keyframes": [
                                         {
                                             "time": 0.0,
-                                            "value": 0.033189462717666325
+                                            "value": 0.6391112656791841
                                         },
                                         {
                                             "time": 0.25,
-                                            "value": 0.0
+                                            "value": 0.6267223630248479
                                         },
                                         {
                                             "time": 0.5,
-                                            "value": 0.03661259115939874
+                                            "value": 0.6403890448767166
                                         },
                                         {
                                             "time": 0.75,
-                                            "value": 0.07084387557672275
+                                            "value": 0.6531668368520409
                                         },
                                         {
                                             "time": 1.0,
-                                            "value": 0.08051793421640126
+                                            "value": 0.6567779519755022
                                         }
                                     ],
                                     "intimeline": true
@@ -93,29 +95,31 @@
                                 {
                                     "type": "altitude",
                                     "value": {
-                                        "relative": 0,
+                                        "minValueRange": -500.0,
+                                        "maxValueRange": 65117481.0,
+                                        "relative": 0.0069182120373173115,
                                         "logarithmic": false
                                     },
                                     "keyframes": [
                                         {
                                             "time": 0.0,
-                                            "value": 0.0069105178574546434
+                                            "value": 0.0069182120373173115
                                         },
                                         {
                                             "time": 0.25,
-                                            "value": 0.0069105178574546434
+                                            "value": 0.0069182120373173115
                                         },
                                         {
                                             "time": 0.5,
-                                            "value": 0.0069105178574546434
+                                            "value": 0.0069182120373173115
                                         },
                                         {
                                             "time": 0.75,
-                                            "value": 0.0069105178574546434
+                                            "value": 0.0069182120373173115
                                         },
                                         {
                                             "time": 1.0,
-                                            "value": 0.0069105178574546434
+                                            "value": 0.0069182120373173115
                                         }
                                     ],
                                     "intimeline": true
@@ -161,26 +165,26 @@
                                 {
                                     "type": "rotationX",
                                     "value": {
-                                        "relative": 0,
-                                        "minValueRange": -6.28236222957338,
-                                        "maxValueRange": 113.53960026518246
+                                        "minValueRange": 0.0,
+                                        "maxValueRange": 360.0,
+                                        "relative": 0.31487292337209705
                                     },
                                     "keyframes": [
                                         {
                                             "time": 0.0,
-                                            "value": 1.0
+                                            "value": 0.31487292337209705
                                         },
                                         {
                                             "time": 0.3333333333333333,
-                                            "value": 0.350649371344055
+                                            "value": 0.09855795738196019
                                         },
                                         {
                                             "time": 0.6666666666666666,
-                                            "value": 0.0
+                                            "value": -0.017283488249433453
                                         },
                                         {
                                             "time": 1.0,
-                                            "value": 0.6862851800359095
+                                            "value": 0.2108593928332065
                                         }
                                     ],
                                     "intimeline": true
@@ -188,7 +192,9 @@
                                 {
                                     "type": "rotationY",
                                     "value": {
-                                        "relative": 0
+                                        "minValueRange": 0.0,
+                                        "maxValueRange": 180.0,
+                                        "relative": 0.25
                                     },
                                     "keyframes": [
                                         {

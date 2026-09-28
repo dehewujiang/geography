@@ -33,25 +33,26 @@
                                 {
                                     "type": "longitude",
                                     "value": {
-                                        "relative": 0,
-                                        "minValueRange": 100.16
+                                        "minValueRange": -180.0,
+                                        "maxValueRange": 180.0,
+                                        "relative": 0.7840555555555555
                                     },
                                     "keyframes": [
                                         {
                                             "time": 0.0,
-                                            "value": 0.026302605210420937
+                                            "value": 0.7840555555555555
                                         },
                                         {
                                             "time": 0.3333333333333333,
-                                            "value": 0.01690881763527064
+                                            "value": 0.7819722222222222
                                         },
                                         {
                                             "time": 0.6666666666666666,
-                                            "value": 0.008642284569138245
+                                            "value": 0.7801388888888889
                                         },
                                         {
                                             "time": 1.0,
-                                            "value": 0.0
+                                            "value": 0.7782222222222221
                                         }
                                     ],
                                     "intimeline": true
@@ -59,25 +60,26 @@
                                 {
                                     "type": "latitude",
                                     "value": {
-                                        "relative": 0,
-                                        "minValueRange": 25.69
+                                        "minValueRange": -89.9999,
+                                        "maxValueRange": 89.9999,
+                                        "relative": 0.6548890609878455
                                     },
                                     "keyframes": [
                                         {
                                             "time": 0.0,
-                                            "value": 0.03405380189706107
+                                            "value": 0.6548890609878455
                                         },
                                         {
                                             "time": 0.3333333333333333,
-                                            "value": 0.02690094853055513
+                                            "value": 0.6523335025927807
                                         },
                                         {
                                             "time": 0.6666666666666666,
-                                            "value": 0.024723993158140254
+                                            "value": 0.6515557239508044
                                         },
                                         {
                                             "time": 1.0,
-                                            "value": 0.0
+                                            "value": 0.6427223808026453
                                         }
                                     ],
                                     "intimeline": true
@@ -85,25 +87,27 @@
                                 {
                                     "type": "altitude",
                                     "value": {
-                                        "relative": 0,
+                                        "minValueRange": -500.0,
+                                        "maxValueRange": 65117481.0,
+                                        "relative": 0.0038468637410610136,
                                         "logarithmic": false
                                     },
                                     "keyframes": [
                                         {
                                             "time": 0.0,
-                                            "value": 0.003839176587474802
+                                            "value": 0.0038468637410610136
                                         },
                                         {
                                             "time": 0.3333333333333333,
-                                            "value": 0.003839176587474802
+                                            "value": 0.0038468637410610136
                                         },
                                         {
                                             "time": 0.6666666666666666,
-                                            "value": 0.003839176587474802
+                                            "value": 0.0038468637410610136
                                         },
                                         {
                                             "time": 1.0,
-                                            "value": 0.003839176587474802
+                                            "value": 0.0038468637410610136
                                         }
                                     ],
                                     "intimeline": true
@@ -149,22 +153,22 @@
                                 {
                                     "type": "rotationX",
                                     "value": {
-                                        "relative": 0,
-                                        "minValueRange": -158.90858250296418,
-                                        "maxValueRange": -103.43982021965496
+                                        "minValueRange": 0.0,
+                                        "maxValueRange": 360.0,
+                                        "relative": 0.653613896087818
                                     },
                                     "keyframes": [
                                         {
                                             "time": 0.0,
-                                            "value": 0.6157139904332432
+                                            "value": 0.653613896087818
                                         },
                                         {
                                             "time": 0.5,
-                                            "value": 1.0
+                                            "value": 0.7126899296089476
                                         },
                                         {
                                             "time": 1.0,
-                                            "value": 0.0
+                                            "value": 0.5589641308385682
                                         }
                                     ],
                                     "intimeline": true
@@ -172,7 +176,9 @@
                                 {
                                     "type": "rotationY",
                                     "value": {
-                                        "relative": 0
+                                        "minValueRange": 0.0,
+                                        "maxValueRange": 180.0,
+                                        "relative": 0.2222222222222222
                                     },
                                     "keyframes": [
                                         {
