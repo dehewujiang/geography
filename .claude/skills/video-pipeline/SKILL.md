@@ -12,7 +12,7 @@ description: 《中央帝国的军事密码》短视频五步流水线入口卡�
 
 | 步 | 读哪个抽屉 | 产出交接物 | 没这个不许进下一步 |
 |---|---|---|---|
-| 1.事实锁死 | `references/step1-fact.md` | 事实卡一页 | 没事实卡不开文案 |
+| 1.事实锁死 | `references/step1-fact.md`（母版三选一另见`kml-hand/code/convert.md`） | 事实卡一页+母版kml | 没事实卡不开文案 |
 | 2.叙事定稿 | `references/step2-narrative.md` | 文案+分镜 | 文案没定稿不动脚本 |
 | 3.呈现生成 | `references/step3-present.md` | esp+kml成对 | `verify`没过不进GES |
 | 4.亲眼验收 | `references/step4-review.md` | 问题单 | 用户没播一遍不发布 |
