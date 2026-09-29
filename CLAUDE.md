@@ -17,6 +17,7 @@
 | `make_video_assets.py` | 生成器 + 重剪器 + 校验器（纯标准库；**别装 numpy 等依赖**） |
 | `kml.json` | 早期会话导出记录（研究物，与流程无关，勿删勿用） |
 | `蒙古大迂回_三路路线_备份20260928.kml.bak` | 用户保留的母版备份，勿删 |
+| `分集/XX_YY/*.md` | 每集工作纸（事实卡/文案/分镜/问题单/复盘，一集5张，见 `分集/CLAUDE.md`） |
 
 ## 命令（Windows PowerShell）
 
@@ -65,6 +66,7 @@ python make_video_assets.py verify        # 回归校验：解码值与路线/�
 |---|---|---|
 | L1 · 本目录 | `CLAUDE.md` / `AGENTS.md`（同内容复制对） | 全局地图：文件角色、命令、编码规范、纪律 |
 | L2 · `视频制作/` | `视频制作/CLAUDE.md` / `视频制作/AGENTS.md`（同内容复制对） | 成员清单 + 父级链接 |
+| L2 · `分集/` | `分集/CLAUDE.md` / `分集/AGENTS.md`（同内容复制对） | 每集工作纸结构 + 父级链接 |
 | L3 · 代码文件头 | `make_video_assets.py` 的 [INPUT]/[OUTPUT]/[POS]/[PROTOCOL] | 文件级契约 |
 
 - 接手顺序：先读 L1 → 需要时读 L2 → 改代码前先看 L3 头部。
