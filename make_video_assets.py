@@ -11,6 +11,11 @@ make_video_assets.py — 《蒙古大迂回》GES 视频素材生成器 v2（镜
           经度 [-180,180]  纬度 [-89.9999,89.9999]  高度 [-500,65117481]（米）
           水平转向 rotationX [0,360]（罗盘方位角：正北=0°，顺时针，90°=正东）
           俯仰   rotationY [0,180]（0=垂直俯瞰，90=平视）
+        缓动（2026-10-12 查证）：无 easing 字段；缓动 = 关键帧上的 transitionIn/transitionOut 对象
+          {"x","y","influence","type"}，type ∈ auto|linear|custom（依据真实导出样本 modelVersion 15/17，
+          见 Stanford-NavLab/nerfstudio Transamerica.json 模板与 gist 8665504665ca8f622bd7753c3b50f910）。
+          本片组只在整段首尾 Keyframe 加 auto/influence=0.5 的缓动，中段线性——挨个加会造成每路点停顿。
+        阴影：.esp 无阴影字段（真实样例 sunGroup 仅 sunVisibility + worldTime）；阴影随 Time-of-Day 光照自动生效。
         依据：GES 原生导出样例（modelVersion 16）、jayin92/GES-utils 实测管线（NeRF 训练逆向验证）、
         Google Maps 相机 bearing/tilt 官方定义。修改本文件后必须重跑 verify 并让用户重测 02。
 用法：
@@ -38,34 +43,34 @@ TILT = (0.0, 180.0)
 # ---- 镜头设计表：base=文件名前缀 cam=[(经度,纬度)...] 按飞行顺序；kml=.kml 剪取规格（None=母版整份） ----
 CLIPS = [
     dict(base="01_开场", cam=[(104.30, 36.30), (103.857, 35.376), (103.50, 34.00)],
-         alt=200000, tilt=55, dur=240,
+         alt=120000, tilt=65, dur=240,
          kml=["开场集结线", "临洮", "达拉沟"]),
     dict(base="02_三路全景", cam=[(103.50, 34.00), (102.00, 30.00), (100.16, 25.69)],
-         alt=900000, tilt=50, dur=300,
+         alt=600000, tilt=60, dur=300,
          kml=["东路", "中路", "西路", "分兵点", "中转"]),
-    dict(base="03_东路", cam="东路", alt=450000, tilt=45, dur=600,
+    dict(base="03_东路", cam="东路", alt=150000, tilt=65, dur=600,
          kml=["东路", "分兵点", "中转"]),
-    dict(base="04_中路", cam="中路", alt=450000, tilt=45, dur=600,
+    dict(base="04_中路", cam="中路", alt=150000, tilt=65, dur=600,
          kml=["中路", "分兵点", "中转"]),
-    dict(base="05_西路", cam="西路", alt=450000, tilt=45, dur=600,
+    dict(base="05_西路", cam="西路", alt=150000, tilt=65, dur=600,
          kml=["西路", "分兵点", "中转"]),
     dict(base="06_大理会师", cam=[(102.26, 27.88), (101.51, 27.42), (100.85, 27.28), (100.16, 25.69)],
-         alt=250000, tilt=40, dur=270,
+         alt=120000, tilt=60, dur=270,
          kml=["东路", "中路", "西路", "分兵点", "中转"]),
     dict(base="07_四川战场", cam=[(107.02, 33.07), (105.84, 32.43), (105.57, 32.28), (106.36, 29.96)],
-         alt=400000, tilt=45, dur=480,
+         alt=180000, tilt=60, dur=480,
          kml=["金牛道", "米仓道", "四川南线", "结局"]),
     dict(base="08_两湖北线", cam=[(117.39, 32.91), (117.22, 31.82), (114.30, 30.55)],
-         alt=300000, tilt=45, dur=300,
+         alt=150000, tilt=60, dur=300,
          kml=["湖北北线", "武昌"]),
     dict(base="09_两湖南线", cam=[(102.71, 25.04), (108.36, 22.81), (110.28, 25.27), (110.00, 27.57), (112.93, 28.22)],
-         alt=450000, tilt=45, dur=480,
+         alt=200000, tilt=55, dur=480,
          kml=["湖南南线", "长沙"]),
     dict(base="10_安南", cam=[(102.71, 25.04), (103.97, 22.51), (105.85, 21.02)],
-         alt=350000, tilt=50, dur=300,
+         alt=150000, tilt=60, dur=300,
          kml=["安南线", "河内"]),
     dict(base="11_终章", cam=[(107.80, 33.30), (106.90, 31.50), (106.36, 29.96)],
-         alt=450000, tilt=45, dur=330,
+         alt=250000, tilt=55, dur=330,
          kml=None),
 ]
 
@@ -113,21 +118,58 @@ def unfold(seq):
     return out
 
 
-def keyframes(vals):
+def leg_dist(c1, c2):
+    """两路点地面距离（km，等距圆柱近似，仅用于时间分配相对比例）"""
+    mid_lat = math.radians((c1[1] + c2[1]) / 2.0)
+    dx = (c2[0] - c1[0]) * math.cos(mid_lat) * 111.32
+    dy = (c2[1] - c1[1]) * 110.57
+    return math.hypot(dx, dy)
+
+
+def sample_times(cam):
+    """按里程分配关键帧时间：时间点 = 已飞里程 / 总里程（长路段占时多，消速度突变）"""
+    legs = [leg_dist(cam[i], cam[i + 1]) for i in range(len(cam) - 1)]
+    total = sum(legs)
+    times = [0.0]
+    for d in legs:
+        times.append(times[-1] + (d / total if total > 0 else 1.0 / len(legs)))
+    return times
+
+
+def keyframes(vals, times=None):
+    """vals -> GES 关键帧列表；times 缺省时均匀铺满（旧行为）"""
     n = len(vals)
-    if n == 1:
-        return [{"time": 0.0, "value": vals[0]}]
-    return [{"time": i / (n - 1), "value": v} for i, v in enumerate(vals)]
+    if times is None:
+        times = [i / (n - 1) for i in range(n)] if n > 1 else [0.0]
+    return [{"time": t, "value": v} for t, v in zip(times, vals)]
 
 
-def block(label, rng, actuals, extra=None):
-    """按标准区间归一化，生成 GES 关键帧块"""
+AUTO_EASE_OUT = {"x": 0.066, "y": 0.0, "influence": 0.5, "type": "auto"}
+AUTO_EASE_IN = {"x": -0.066, "y": 0.0, "influence": 0.5, "type": "auto"}
+
+
+def apply_ease(kfs):
+    """仅对整段首尾叠加缓入缓出（transitionIn/transitionOut，v17 真实导出编码）；
+    中间关键帧保持线性——挨个加缓动会造成每个路点都减速一次的停顿感"""
+    if len(kfs) <= 1:
+        return kfs
+    out = [dict(k) for k in kfs]
+    out[0]["transitionOut"] = dict(AUTO_EASE_OUT)
+    out[-1]["transitionIn"] = dict(AUTO_EASE_IN)
+    return out
+
+
+def block(label, rng, actuals, times=None, extra=None, ease=False):
+    """按标准区间归一化，生成 GES 关键帧块（times 缺省=均匀铺满；ease=True 仅首尾缓动）"""
     lo, hi = rng
     vals = [norm(a, rng) for a in actuals]
     value = {"minValueRange": lo, "maxValueRange": hi, "relative": vals[0]}
     if extra:
         value.update(extra)
-    return {"type": label, "value": value, "keyframes": keyframes(vals), "intimeline": True}
+    kfs = keyframes(vals, times)
+    if ease:
+        kfs = apply_ease(kfs)
+    return {"type": label, "value": value, "keyframes": kfs, "intimeline": True}
 
 
 def parse_master():
@@ -158,6 +200,7 @@ def pm(places, keyword):
 def build_esp(clip, cam):
     """把一个片段编译成完整 .esp 数据结构"""
     pans = unfold([bearing(cam[i], cam[i + 1]) for i in range(len(cam) - 1)])
+    times = sample_times(cam)  # 按里程分配：长路段占时多，消镜头忽快忽慢
     return {
         "modelVersion": 17,
         "settings": {"name": clip["base"], "frameRate": 30,
@@ -165,14 +208,14 @@ def build_esp(clip, cam):
                      "duration": clip["dur"], "timeFormat": "frames"},
         "scenes": [{
             "world": {"kmls": []},
-            "animationModel": {"roving": False, "logarithmic": False, "groupedPosition": True},
+            "animationModel": {"roving": True, "logarithmic": False, "groupedPosition": True},
             "duration": clip["dur"],
             "attributes": [
                 {"type": "cameraGroup", "inTimeline": True, "attributes": [
                     {"type": "cameraPositionGroup", "inTimeline": True, "attributes": [
-                        block("longitude", LON, [c[0] for c in cam]),
-                        block("latitude", LAT, [c[1] for c in cam]),
-                        block("altitude", ALT, [clip["alt"]] * len(cam), extra={"logarithmic": False}),
+                        block("longitude", LON, [c[0] for c in cam], times, ease=True),
+                        block("latitude", LAT, [c[1] for c in cam], times, ease=True),
+                        block("altitude", ALT, [clip["alt"]] * len(cam), times, extra={"logarithmic": False}),
                     ]},
                     {"type": "cameraTargetEffect", "attributes": [
                         {"type": "enabled", "value": {}},
@@ -184,7 +227,7 @@ def build_esp(clip, cam):
                         {"type": "influence", "value": {}},
                     ]},
                     {"type": "cameraRotationGroup", "inTimeline": True, "attributes": [
-                        block("rotationX", PAN, pans),
+                        block("rotationX", PAN, pans, times[:-1], ease=True),  # 方位角 = 每段飞向，与路点对齐
                         block("rotationY", TILT, [clip["tilt"], clip["tilt"]]),
                         {"type": "rotationZ", "value": {}},
                     ]},
@@ -198,7 +241,7 @@ def build_esp(clip, cam):
                 {"type": "environmentGroup", "attributes": [
                     {"type": "sunGroup", "attributes": [
                         {"type": "sunVisibility", "value": {}},
-                        {"type": "worldTime", "value": {"relative": 0.5}}]},
+                        {"type": "worldTime", "value": {"relative": 0.8}}]},  # 0.8≈地球时19:12，低角度斜射光
                     {"type": "cloudGroup", "attributes": [
                         {"type": "cloudVisibility", "value": {}},
                         {"type": "cloudopacity", "value": {}},

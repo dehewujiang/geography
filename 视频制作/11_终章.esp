@@ -16,7 +16,7 @@
                 "kmls": []
             },
             "animationModel": {
-                "roving": false,
+                "roving": true,
                 "logarithmic": false,
                 "groupedPosition": true
             },
@@ -40,15 +40,27 @@
                                     "keyframes": [
                                         {
                                             "time": 0.0,
-                                            "value": 0.7994444444444445
+                                            "value": 0.7994444444444445,
+                                            "transitionOut": {
+                                                "x": 0.066,
+                                                "y": 0.0,
+                                                "influence": 0.5,
+                                                "type": "auto"
+                                            }
                                         },
                                         {
-                                            "time": 0.5,
+                                            "time": 0.5485939170744296,
                                             "value": 0.7969444444444443
                                         },
                                         {
                                             "time": 1.0,
-                                            "value": 0.7954444444444445
+                                            "value": 0.7954444444444445,
+                                            "transitionIn": {
+                                                "x": -0.066,
+                                                "y": 0.0,
+                                                "influence": 0.5,
+                                                "type": "auto"
+                                            }
                                         }
                                     ],
                                     "intimeline": true
@@ -63,15 +75,27 @@
                                     "keyframes": [
                                         {
                                             "time": 0.0,
-                                            "value": 0.6850002055557839
+                                            "value": 0.6850002055557839,
+                                            "transitionOut": {
+                                                "x": 0.066,
+                                                "y": 0.0,
+                                                "influence": 0.5,
+                                                "type": "auto"
+                                            }
                                         },
                                         {
-                                            "time": 0.5,
+                                            "time": 0.5485939170744296,
                                             "value": 0.6750001944446605
                                         },
                                         {
                                             "time": 1.0,
-                                            "value": 0.6664446293829216
+                                            "value": 0.6664446293829216,
+                                            "transitionIn": {
+                                                "x": -0.066,
+                                                "y": 0.0,
+                                                "influence": 0.5,
+                                                "type": "auto"
+                                            }
                                         }
                                     ],
                                     "intimeline": true
@@ -81,21 +105,21 @@
                                     "value": {
                                         "minValueRange": -500.0,
                                         "maxValueRange": 65117481.0,
-                                        "relative": 0.0069182120373173115,
+                                        "relative": 0.0038468637410610136,
                                         "logarithmic": false
                                     },
                                     "keyframes": [
                                         {
                                             "time": 0.0,
-                                            "value": 0.0069182120373173115
+                                            "value": 0.0038468637410610136
                                         },
                                         {
-                                            "time": 0.5,
-                                            "value": 0.0069182120373173115
+                                            "time": 0.5485939170744296,
+                                            "value": 0.0038468637410610136
                                         },
                                         {
                                             "time": 1.0,
-                                            "value": 0.0069182120373173115
+                                            "value": 0.0038468637410610136
                                         }
                                     ],
                                     "intimeline": true
@@ -148,11 +172,23 @@
                                     "keyframes": [
                                         {
                                             "time": 0.0,
-                                            "value": 0.5635769961540871
+                                            "value": 0.5635769961540871,
+                                            "transitionOut": {
+                                                "x": 0.066,
+                                                "y": 0.0,
+                                                "influence": 0.5,
+                                                "type": "auto"
+                                            }
                                         },
                                         {
-                                            "time": 1.0,
-                                            "value": 0.5465930067327263
+                                            "time": 0.5485939170744296,
+                                            "value": 0.5465930067327263,
+                                            "transitionIn": {
+                                                "x": -0.066,
+                                                "y": 0.0,
+                                                "influence": 0.5,
+                                                "type": "auto"
+                                            }
                                         }
                                     ],
                                     "intimeline": true
@@ -162,16 +198,16 @@
                                     "value": {
                                         "minValueRange": 0.0,
                                         "maxValueRange": 180.0,
-                                        "relative": 0.25
+                                        "relative": 0.3055555555555556
                                     },
                                     "keyframes": [
                                         {
                                             "time": 0.0,
-                                            "value": 0.25
+                                            "value": 0.3055555555555556
                                         },
                                         {
                                             "time": 1.0,
-                                            "value": 0.25
+                                            "value": 0.3055555555555556
                                         }
                                     ],
                                     "intimeline": true
@@ -218,7 +254,7 @@
                                 {
                                     "type": "worldTime",
                                     "value": {
-                                        "relative": 0.5
+                                        "relative": 0.8
                                     }
                                 }
                             ]
