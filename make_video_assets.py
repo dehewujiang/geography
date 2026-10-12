@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 r"""
 make_video_assets.py — 《蒙古大迂回》GES 视频素材生成器 v2（镜头朝向修正版）
-[INPUT]: 蒙古大迂回_三路路线.kml（只读，取"东路/中路/西路"三条路线坐标）；下方 CLIPS 表（镜头设计参数）
+[INPUT]: 蒙古大迂回_三路路线.kml（只读，取"东路/中路/西路"三条路线坐标）；CLIPS 表（镜头参数：cam 逐点坐标 + alts/tilts 逐点数组 + hold 开场静止秒）
 [OUTPUT]: 视频制作\XX_*.esp 共 11 个相机动画工程文件（generate 重写）；XX_*.kml 共 11 个路线图层（generate-kml 从母版重剪，逐字节复刻既有成品）
 [POS]: 项目根目录工具脚本；v1（2026-09-28 初版）的修正版——v1 用了 GES 不认的私有数值编码（按自定义
         min/max 归一化、缺 maxValueRange、水平转向为负值），导致导入 GES 后镜头方向错乱/反向。
@@ -16,6 +16,10 @@ make_video_assets.py — 《蒙古大迂回》GES 视频素材生成器 v2（镜
           见 Stanford-NavLab/nerfstudio Transamerica.json 模板与 gist 8665504665ca8f622bd7753c3b50f910）。
           本片组只在整段首尾 Keyframe 加 auto/influence=0.5 的缓动，中段线性——挨个加会造成每路点停顿。
         阴影：.esp 无阴影字段（真实样例 sunGroup 仅 sunVisibility + worldTime）；阴影随 Time-of-Day 光照自动生效。
+        节奏化（2026-10-12）：alts/tilts 与 cam 逐点对应；时间轴 = 已飞里程/总里程（sample_times）；
+          hold 秒数=开场原地静止（读图/定场用）；高度地板 = 沿线地形最高点+30km（地形已实测炊入 CLIPS，
+          2026-10-12 open-meteo elevation API 752 点，路段地板 30~36 万米）。俯仰约定：数值越大越平视，
+          贴地跟拍用 25~35°（60~70° 会贴着大气层看，雾感重——v2.1 曾犯此错已纠正）。
         依据：GES 原生导出样例（modelVersion 16）、jayin92/GES-utils 实测管线（NeRF 训练逆向验证）、
         Google Maps 相机 bearing/tilt 官方定义。修改本文件后必须重跑 verify 并让用户重测 02。
 用法：
@@ -40,38 +44,49 @@ ALT = (-500.0, 65117481.0)
 PAN = (0.0, 360.0)
 TILT = (0.0, 180.0)
 
-# ---- 镜头设计表：base=文件名前缀 cam=[(经度,纬度)...] 按飞行顺序；kml=.kml 剪取规格（None=母版整份） ----
+# ---- 镜头设计表 ----
+# cam=[(经度,纬度)...] 按飞行顺序；alts/tilts 与 cam 逐点对应（节奏化高度/俯仰，单位米/度）；
+# hold=开场静止秒数（画面不动给观众读图）；地板线规则：高度 >= 沿线地形最高点+30km 余量
+# （地形采样 2026-10-12 open-meteo elevation API，752 点，全段地板 30~36 万米，均低于基准高度）
+# kml=.kml 剪取规格（None=母版整份）
 CLIPS = [
-    dict(base="01_开场", cam=[(104.30, 36.30), (103.857, 35.376), (103.50, 34.00)],
-         alt=120000, tilt=65, dur=240,
-         kml=["开场集结线", "临洮", "达拉沟"]),
+    dict(base="01_开场",
+         cam=[(105.00, 35.00), (105.00, 35.00), (103.857, 35.376), (103.50, 34.00)],
+         alts=[7000000, 7000000, 130000, 130000], tilts=[0, 0, 25, 30], hold=1.5, dur=240,
+         kml=["开场集结线", "临洮", "达拉沟"]),  # 定场：太空看中国轮廓(北朝上)静止1.5s → 俯冲到临洮 → 集结线飞行
     dict(base="02_三路全景", cam=[(103.50, 34.00), (102.00, 30.00), (100.16, 25.69)],
-         alt=600000, tilt=60, dur=300,
+         alts=[1500000, 900000, 400000], tilts=[8, 15, 25], dur=300,
          kml=["东路", "中路", "西路", "分兵点", "中转"]),
-    dict(base="03_东路", cam="东路", alt=150000, tilt=65, dur=600,
+    dict(base="03_东路", cam="东路", dur=600,
+         alts=[128000, 80000, 80000, 80000, 80000, 80000, 80000, 80000, 104000],
+         tilts=[30, 30, 30, 30, 30, 30, 30, 30, 30],
          kml=["东路", "分兵点", "中转"]),
-    dict(base="04_中路", cam="中路", alt=150000, tilt=65, dur=600,
+    dict(base="04_中路", cam="中路", dur=600,
+         alts=[128000, 80000, 80000, 80000, 80000, 80000, 80000, 80000, 80000, 80000, 80000, 80000, 104000],
+         tilts=[30] * 13,
          kml=["中路", "分兵点", "中转"]),
-    dict(base="05_西路", cam="西路", alt=150000, tilt=65, dur=600,
+    dict(base="05_西路", cam="西路", dur=600,
+         alts=[128000, 80000, 80000, 80000, 80000, 80000, 80000, 80000, 80000, 80000, 104000],
+         tilts=[30] * 11,
          kml=["西路", "分兵点", "中转"]),
     dict(base="06_大理会师", cam=[(102.26, 27.88), (101.51, 27.42), (100.85, 27.28), (100.16, 25.69)],
-         alt=120000, tilt=60, dur=270,
-         kml=["东路", "中路", "西路", "分兵点", "中转"]),
+         alts=[140000, 100000, 100000, 160000], tilts=[30, 30, 30, 20], dur=270,
+         kml=["东路", "中路", "西路", "分兵点", "中转"]),  # 末点拉起看大理全景
     dict(base="07_四川战场", cam=[(107.02, 33.07), (105.84, 32.43), (105.57, 32.28), (106.36, 29.96)],
-         alt=180000, tilt=60, dur=480,
-         kml=["金牛道", "米仓道", "四川南线", "结局"]),
+         alts=[180000, 120000, 120000, 204000], tilts=[30, 30, 30, 20], dur=480,
+         kml=["金牛道", "米仓道", "四川南线", "结局"]),  # 末点拉起看钓鱼城
     dict(base="08_两湖北线", cam=[(117.39, 32.91), (117.22, 31.82), (114.30, 30.55)],
-         alt=150000, tilt=60, dur=300,
+         alts=[150000, 100000, 115000], tilts=[30, 30, 30], dur=300,
          kml=["湖北北线", "武昌"]),
     dict(base="09_两湖南线", cam=[(102.71, 25.04), (108.36, 22.81), (110.28, 25.27), (110.00, 27.57), (112.93, 28.22)],
-         alt=200000, tilt=55, dur=480,
+         alts=[168000, 120000, 120000, 120000, 156000], tilts=[30, 30, 30, 30, 25], dur=480,
          kml=["湖南南线", "长沙"]),
     dict(base="10_安南", cam=[(102.71, 25.04), (103.97, 22.51), (105.85, 21.02)],
-         alt=150000, tilt=60, dur=300,
+         alts=[150000, 100000, 120000], tilts=[30, 30, 25], dur=300,
          kml=["安南线", "河内"]),
     dict(base="11_终章", cam=[(107.80, 33.30), (106.90, 31.50), (106.36, 29.96)],
-         alt=250000, tilt=55, dur=330,
-         kml=None),
+         alts=[280000, 200000, 360000], tilts=[35, 35, 18], dur=330,
+         kml=None),  # 终点大幅拉起收全景
 ]
 
 
@@ -126,14 +141,29 @@ def leg_dist(c1, c2):
     return math.hypot(dx, dy)
 
 
-def sample_times(cam):
-    """按里程分配关键帧时间：时间点 = 已飞里程 / 总里程（长路段占时多，消速度突变）"""
+def sample_times(cam, dur, hold=0.0):
+    """按里程分配关键帧时间：长路段占时多，消镜头忽快忽慢；
+    hold>0 时首点原地静止（读图时间），静止段占用该比例的时长后退进里程分配"""
     legs = [leg_dist(cam[i], cam[i + 1]) for i in range(len(cam) - 1)]
     total = sum(legs)
+    hold_frac = min(hold / dur, 0.5) if hold else 0.0
     times = [0.0]
+    cum = 0.0
     for d in legs:
-        times.append(times[-1] + (d / total if total > 0 else 1.0 / len(legs)))
+        cum += d
+        span = (cum / total) if total > 0 else 0.0
+        times.append(hold_frac + span * (1.0 - hold_frac))
     return times
+
+
+def clip_alts(clip, n):
+    """逐点高度数组（米）；旧版单值 alt 字段仍兼容"""
+    return clip.get("alts") or [clip["alt"]] * n
+
+
+def clip_tilts(clip, n):
+    """逐点俯仰数组（度，0=垂直俯瞰，90=平视）；旧版单值 tilt 字段仍兼容"""
+    return clip.get("tilts") or [clip["tilt"]] * n
 
 
 def keyframes(vals, times=None):
@@ -199,8 +229,9 @@ def pm(places, keyword):
 
 def build_esp(clip, cam):
     """把一个片段编译成完整 .esp 数据结构"""
-    pans = unfold([bearing(cam[i], cam[i + 1]) for i in range(len(cam) - 1)])
-    times = sample_times(cam)  # 按里程分配：长路段占时多，消镜头忽快忽慢
+    n = len(cam)
+    pans = unfold([bearing(cam[i], cam[i + 1]) for i in range(n - 1)])
+    times = sample_times(cam, clip["dur"], clip.get("hold", 0.0))  # 按里程分配 + 开场静止段
     return {
         "modelVersion": 17,
         "settings": {"name": clip["base"], "frameRate": 30,
@@ -215,7 +246,7 @@ def build_esp(clip, cam):
                     {"type": "cameraPositionGroup", "inTimeline": True, "attributes": [
                         block("longitude", LON, [c[0] for c in cam], times, ease=True),
                         block("latitude", LAT, [c[1] for c in cam], times, ease=True),
-                        block("altitude", ALT, [clip["alt"]] * len(cam), times, extra={"logarithmic": False}),
+                        block("altitude", ALT, clip_alts(clip, n), times, extra={"logarithmic": False}),
                     ]},
                     {"type": "cameraTargetEffect", "attributes": [
                         {"type": "enabled", "value": {}},
@@ -228,7 +259,7 @@ def build_esp(clip, cam):
                     ]},
                     {"type": "cameraRotationGroup", "inTimeline": True, "attributes": [
                         block("rotationX", PAN, pans, times[:-1], ease=True),  # 方位角 = 每段飞向，与路点对齐
-                        block("rotationY", TILT, [clip["tilt"], clip["tilt"]]),
+                        block("rotationY", TILT, clip_tilts(clip, n), times),
                         {"type": "rotationZ", "value": {}},
                     ]},
                     {"type": "cameraLensGroup", "attributes": [
@@ -280,7 +311,9 @@ def generate():
             json.dump(esp, f, ensure_ascii=False, indent=4)
         pans = unfold([bearing(cam[i], cam[i + 1]) for i in range(len(cam) - 1)])
         dirs = " ".join(f"{p:.1f}°" for p in pans)
-        print(f"OK {clip['base']}: {len(cam)}点 方位[{dirs}] alt={clip['alt']}m tilt={clip['tilt']}° dur={clip['dur']}f")
+        npts = len(cam)
+        print(f"OK {clip['base']}: {npts}点 方位[{dirs}] "
+              f"alt={clip_alts(clip, npts)}m tilt={clip_tilts(clip, npts)}° dur={clip['dur']}f")
     print(f"\n已重写 {len(CLIPS)} 个 .esp -> {OUT_DIR}")
 
 
@@ -382,8 +415,10 @@ def verify_dir(path):
             continue
         assert lon_b is not None and lat_b is not None and alt_b is not None and rot_b is not None and tlt_b is not None
 
-        exp_pans = unfold([bearing(cam[i], cam[i + 1]) for i in range(len(cam) - 1)])
-        exp_tilt = float(clip["tilt"])
+        n = len(cam)
+        exp_pans = unfold([bearing(cam[i], cam[i + 1]) for i in range(n - 1)])
+        exp_alts = clip_alts(clip, n)
+        exp_tilts = clip_tilts(clip, n)
 
         # 两份解码都验：A=声明区间  B=固定标准区间（v2 编码下两者应一致）
         for model in ("A", "B"):
@@ -397,24 +432,34 @@ def verify_dir(path):
             for i, c in enumerate(cam):
                 if abs(dl[i] - c[0]) > 1e-6 or abs(da[i] - c[1]) > 1e-6:
                     failures.append(f"{tag}[模型{model}]: 位置KF{i+1} 解码为 ({dl[i]:.5f},{da[i]:.5f})，应为 ({c[0]:.5f},{c[1]:.5f})")
-                if abs(dh[i] - clip["alt"]) > 1.0:
-                    failures.append(f"{tag}[模型{model}]: 高度KF{i+1} 解码为 {dh[i]:.1f}m，应为 {clip['alt']}m")
+                if abs(dh[i] - exp_alts[i]) > 1.0:
+                    failures.append(f"{tag}[模型{model}]: 高度KF{i+1} 解码为 {dh[i]:.1f}m，应为 {exp_alts[i]}m")
             for i, p in enumerate(exp_pans):
                 if abs(wrap180(dp[i] - p)) > 1e-6:
                     failures.append(f"{tag}[模型{model}]: 转向KF{i+1} 解码为 {dp[i]:.3f}°，应为 {p:.3f}°")
             for i, t in enumerate(dt):
-                if abs(wrap180(t - exp_tilt)) > 1e-6 and abs(t - exp_tilt) > 1e-6:
-                    failures.append(f"{tag}[模型{model}]: 俯仰KF{i+1} 解码为 {t:.3f}°，应为 {exp_tilt:.3f}°")
+                if abs(t - exp_tilts[i]) > 1e-6:
+                    failures.append(f"{tag}[模型{model}]: 俯仰KF{i+1} 解码为 {t:.3f}°，应为 {exp_tilts[i]:.3f}°")
+            if len(dt) != n:
+                failures.append(f"{tag}[模型{model}]: 俯仰关键帧数 {len(dt)} != 路点数 {n}")
+
+        # 安全下限检查：一切关键帧高度 ≥3 万米（地形地板已炊入 alts 数组本身）
+        for i, a in enumerate(exp_alts):
+            if a < 30000:
+                failures.append(f"{tag}: KF{i+1} 高度 {a}m 低于安全下限 30000m")
 
         # 其它结构检查
         times = [kf["time"] for kf in lon_b["keyframes"]]
         if times != sorted(times) or abs(times[0]) > 1e-12 or abs(times[-1] - 1.0) > 1e-12:
             failures.append(f"{tag}: 时间轴异常 {times}")
-        if len(lon_b["keyframes"]) != len(cam):
-            failures.append(f"{tag}: 位置关键帧数 {len(lon_b['keyframes'])} != {len(cam)}")
+        strict = all(b > a for a, b in zip(times, times[1:]))
+        if not strict:
+            failures.append(f"{tag}: 时间轴有重复点（GES 不接受同刻关键帧）{times}")
+        if len(lon_b["keyframes"]) != n:
+            failures.append(f"{tag}: 位置关键帧数 {len(lon_b['keyframes'])} != {n}")
 
-        checked.append(f"{tag}: {len(cam)}点 方位[{', '.join(f'{p:.1f}°' for p in exp_pans)}] "
-                       f"alt={clip['alt']}m tilt={clip['tilt']}°")
+        checked.append(f"{tag}: {n}点 方位[{', '.join(f'{p:.1f}°' for p in exp_pans)}] "
+                       f"alt={exp_alts}m tilt={exp_tilts}°")
 
     print(f"== 校验目录: {path} ==")
     for line in checked:
