@@ -5,7 +5,7 @@
 > **修改任意一份后，必须立即同步另一份**：改 CLAUDE.md → `Copy-Item CLAUDE.md AGENTS.md -Force`；改 AGENTS.md → `Copy-Item AGENTS.md CLAUDE.md -Force`（在项目根目录执行）。
 
 书稿文件夹 + 地图动画素材。**不是软件项目**：没有测试框架、没有构建链。核心是一条单向流水线：
-**母版 KML → `make_video_assets.py` → `视频制作/` 下的 GES 素材**（.esp 相机动画 + .kml 路线图层，成对编号 01~11，按成片顺序使用）。
+**母版 KML → `make_video_assets.py` → `视频制作/` 下的 GES 素材**（.esp 相机动画 + .kml 路线图层，成对编号 01~11，按成片顺序使用；另有 `03_东路_高版` 一组临时对照，胜出后删败者）。
 
 ## 文件角色
 
@@ -22,8 +22,8 @@
 ## 命令（Windows PowerShell）
 
 ```powershell
-python make_video_assets.py generate      # 重写全部 11 个 .esp
-python make_video_assets.py generate-kml  # 从母版重剪 11 个 .kml（与既有成品逐字节一致）
+python make_video_assets.py generate      # 重写全部 12 个 .esp（含 03_东路_高版对照）
+python make_video_assets.py generate-kml  # 从母版重剪 12 个 .kml（与既有成品逐字节一致）
 python make_video_assets.py verify        # 回归校验：解码值与路线/方位逐项比对；退出码 0=通过
 ```
 
