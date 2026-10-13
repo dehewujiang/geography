@@ -103,6 +103,15 @@
 - **GADM 行政界**：免费但**禁商用**——当前"内容免费"模式可用；日后把系统包装为服务出售即触雷（与 ADR-006 牌照同款逻辑），届时换天地图官方界
 - 任何"不留标注"的省事方案都不许进出厂检查单
 
+## 实测网址备忘（2026-10-13 实测更正版，与粮库真身 README 同步维护）
+
+- DEM 主路线：`https://portal.opentopography.org/raster?opentopoID=OTSDEM.032021.4326.3`（30m 直链；从目录页进默认落 GLO-90 页，易误判"没 30m"——版本 2023_1）
+- DEM 保底：AWS `copernicus-dem-30m`（免注册，2021 旧版；陆地瓦片抽样 200 全过，纯海瓦 404=正常）
+- GeoNames：`http://download.geonames.org/export/dump/`（CN.zip）
+- HydroRIVERS：`https://www.hydrosheds.org/products/hydrorivers`
+- 天地图 key：`console.tianditu.gov.cn` 域名已死 `[运行确认]`——正确入口待补查，事务挂起
+- Sentinel-2：先试脚本直拉（行星计算机 `cop-dem-glo-30` 模式 `[推测]`），不成回 ESA dataspace 手动（须注册）
+
 ## 与其他抽屉的接线
 
 - 设计环输入第②样=**地理摘要**（路线+高程自动算地形要点表）——数据源升级后摘要质量随之升级（`design-loop.md` 第0步）；勘景报告 v2 规格待落（选景候选+最佳观法，2026-10-13 讨论已定方向，director.md 一起落）
