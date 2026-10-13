@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>蒙古大迂回 · 沙盘试点（03东路）</title>
+<script src="vendor/maplibre-gl.js"></script>
+<link href="vendor/maplibre-gl.css" rel="stylesheet">
+<style>
+html,body{margin:0;height:100%;background:#0b0f14;overflow:hidden;font-family:"Microsoft YaHei","PingFang SC",sans-serif}
+#map{position:absolute;inset:0}
+.hud{position:absolute;z-index:9;color:#eef2f6;user-select:none}
+#panel{top:14px;left:14px;display:flex;gap:10px}
+#panel button{font:600 15px/1 "Microsoft YaHei",sans-serif;padding:10px 18px;border-radius:8px;border:1px solid rgba(255,255,255,.25);background:rgba(15,22,32,.85);color:#fff;cursor:pointer}
+#panel button:disabled{opacity:.4;cursor:not-allowed}
+#tip{position:absolute;top:56px;left:16px;color:#8fa3b8;font-size:12px;z-index:9}
+#stage{top:14px;right:14px;background:rgba(8,12,18,.72);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:8px 14px;font-size:14px;color:#9fb3c8}
+#banner{bottom:26px;left:50%;transform:translateX(-50%);background:rgba(8,12,18,.78);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:12px 26px;font-size:21px;letter-spacing:2px;white-space:nowrap}
+#banner b{color:#ffd166}
+#bar{bottom:0;left:0;height:4px;width:100%;background:rgba(255,255,255,.12)}
+#barFill{height:100%;width:0%;background:linear-gradient(90deg,#e5484d,#ffd166)}
+.mk{display:flex;align-items:center;gap:7px;transform:translate(-7px,-50%);pointer-events:none}
+.mk .dot{width:10px;height:10px;border-radius:50%;background:#ffd166;box-shadow:0 0 7px rgba(255,209,102,.95)}
+.mk .nm{font-size:16px;font-weight:700;color:#fff;text-shadow:0 0 6px #000,0 0 12px rgba(0,0,0,.85);letter-spacing:1px;white-space:nowrap}
+.mk.big .dot{background:#ff5b5b;box-shadow:0 0 9px rgba(255,91,91,.95)}
+.mk.big .nm{font-size:21px}
+</style>
+</head>
+<body>
+<div id="map"></div>
+<div class="hud" id="panel">
+  <button id="btnPlay" disabled>▶ 播放</button>
+  <button id="btnRec" disabled>● 录制并保存</button>
+</div>
+<div class="hud" id="tip">免费数据：Esri卫星影像 + AWS地形高程（首次加载山体需数秒）</div>
+<div class="hud" id="stage">等待数据…</div>
+<div class="hud" id="banner">——</div>
+<div id="bar" class="hud"><div id="barFill"></div></div>
+<script>
+"use strict";
+/* ============================================================
+   沙盘试点：镜头是程序，改参数即改画面，不依赖GES云渲染。
+   [INPUT]  同目录 route.json（母版KML抽取，extract_route.py 产出）
+   [OUTPUT] 浏览器动画 + （可选）webm 录像下载
+   [POS]    _sandbox03 的画面本体；与 GES 管线并行对照，不动主脚本
+   [PROTOCOL] 镜头语法常量都在 TUNE 表里；调镜头=TUNE，不动骨架
+   ============================================================ */
+const TUNE = {
+  fps: 30,
+  holdWide: 3000,     // 开头全景定格（治"不知道在哪"）
+  fly: 33000,         // 主飞行时长
+  holdEnd: 2500,      // 结尾定格
+  zWide: 5.35,        // 全景档（比GES高版更远看清全过程）
+  zCruise: 7.55,      // 巡航档
+  pitchStart: 45,
+  pitchCruise: 62,
+  exag: 2.2,          // 高程夸张倍数（治"大山像平地"）
+  bearingSign: 1,     // 朝向符号；冒烟测试若反向改 -1
+};
+const T_TOTAL = TUNE.holdWide + TUNE.fly + TUNE.holdEnd;
+
+const $ = id => document.getElementById(id);
+const bannerEl = $("banner"), stageEl = $("stage"), barEl = $("barFill");
+
+const map = new maplibregl.Map({
+  container: "map",
+  center: [101.83, 30.1], zoom: TUNE.zWide, pitch: TUNE.pitchStart, bearing: 0,
+  maxPitch: 85, fadeDuration: 0, attributionControl: { compact: true },
+  style: {
+    version: 8,
+    sources: {
+      sat: {
+        type: "raster", tileSize: 256,
+        tiles: ["https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"],
+        attribution: "影像 Esri"
+      },
+      dem: {
+        type: "raster-dem", encoding: "terrarium", tileSize: 256, maxzoom: 15,
+        tiles: ["https://elevation-tiles-prod.s3.amazonaws.com/terrarium/{z}/{x}/{y}.png"],
+        attribution: "高程 AWS/OTM"
+      }
+    },
+    layers: [{ id: "sat", type: "raster", source: "sat" }]
+  }
+});
+
+map.on("error", e => {
+  const msg = e && e.error && (e.error.message || e.error.status);
+  console.warn("MAPERR", e && e.error);
+  if (msg) $("stage").textContent = "图层报错：" + msg;
+});
+
+map.on("load", () => {
+  map.setTerrain({ source: "dem", exaggeration: TUNE.exag });
+  map.addLayer({
+    id: "hill", type: "hillshade", source: "dem",
+    paint: {
+      "hillshade-exaggeration": 0.45,
+      "hillshade-shadow-color": "#0f1e2b",
+      "hillshade-highlight-color": "#ffffff",
+      "hillshade-accent-color": "#51708e"
+    }
+  });
+  fetch("route.json").then(r => r.json()).then(build).catch(err => {
+    $("stage").textContent = "数据读取失败：" + err;
+  });
+});
+setTimeout(() => {   // 若引擎/瓦片被拦，把话说在明面上
+  if (!ready) $("tip").textContent =
+    "已等 60s 仍无数据：多半是浏览器插件或代理拦了外部图层，换 Edge 或关代理再试（本地文件均已就位）";
+}, 60000);
+
+/* ---------- 几何 ---------- */
+const R_LON = 111.32, R_LAT = 110.57;
+function km(a, b) {
+  const mid = Math.cos((a[1] + b[1]) / 2 * Math.PI / 180);
+  return Math.hypot((a[0] - b[0]) * mid * R_LON, (b[1] - a[1]) * R_LAT);
+}
+function chaikin(pts) {  // 角磨圆，走两遍路径就够顺
+  const out = [pts[0]];
+  for (let i = 0; i < pts.length - 1; i++) {
+    const a = pts[i], b = pts[i + 1];
+    out.push([a[0] * 0.75 + b[0] * 0.25, a[1] * 0.75 + b[1] * 0.25]);
+    out.push([a[0] * 0.25 + b[0] * 0.75, a[1] * 0.25 + b[1] * 0.75]);
+  }
+  out.push(pts[pts.length - 1]);
+  return out;
+}
+const easeC = u => u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2;
+const easeOut = u => 1 - Math.pow(1 - u, 3);
+const smst = u => { u = Math.min(1, Math.max(0, u)); return u * u * (3 - 2 * u); };
+
+/* ---------- 装配 ---------- */
+let smooth = [], cum = [], tot = 1, anchorCums = [], anchors = [], names = [];
+let frames = [], ready = false;
+let rec = null;
+
+function build(d) {
+  anchors = d.route;
+  names = d.station_names || anchors.map((_, i) => "点" + (i + 1));
+  smooth = chaikin(chaikin(anchors));
+  cum = [0];
+  for (let i = 1; i < smooth.length; i++) cum.push(cum[i - 1] + km(smooth[i - 1], smooth[i]));
+  tot = cum[cum.length - 1];
+  anchorCums = anchors.map(a => nearestCum(a));
+
+  map.addSource("route", {
+    type: "geojson",
+    data: { type: "Feature", geometry: { type: "LineString", coordinates: smooth } }
+  });
+  map.addLayer({ id: "routeGlow", type: "line", source: "route",
+    paint: { "line-color": "#ff4d4d", "line-width": 10, "line-opacity": 0.35, "line-blur": 1.5 } });
+  map.addLayer({ id: "routeCore", type: "line", source: "route",
+    paint: { "line-color": "#ffd166", "line-width": 3, "line-opacity": 0.95 } });
+
+  addMarker(anchors[0], names[0], true);
+  addMarker(anchors[anchors.length - 1], names[names.length - 1], true);
+  for (let i = 1; i < anchors.length - 1; i++) {
+    if (names[i] && !/^点\d+$/.test(names[i])) addMarker(anchors[i], names[i], false);
+  }
+
+  buildFrames();
+  ready = true;
+  $("btnPlay").disabled = false;
+  $("btnRec").disabled = false;
+  $("stage").textContent = "就绪（总里程≈" + Math.round(tot) + "km）";
+  bannerEl.innerHTML = d.route_name || "东路";
+}
+
+function addMarker(ll, name, big) {
+  const el = document.createElement("div");
+  el.className = "mk" + (big ? " big" : "");
+  el.innerHTML = '<div class="dot"></div><div class="nm">' + name + "</div>";
+  new maplibregl.Marker({ element: el, anchor: "left" }).setLngLat(ll).addTo(map);
+}
+
+function nearestCum(a) {  // 锚点在平滑链上的里程占比
+  let best = 0, bd = 1e9;
+  for (let i = 0; i < smooth.length; i++) {
+    const d = km(a, smooth[i]);
+    if (d < bd) { bd = d; best = cum[i]; }
+  }
+  return best;
+}
+function pointAt(dist) {
+  let i = 1;
+  while (i < cum.length - 1 && cum[i] < dist) i++;
+  const t = (dist - cum[i - 1]) / Math.max(1e-9, cum[i] - cum[i - 1]);
+  const a = smooth[i - 1], b = smooth[i];
+  return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t];
+}
+function headingAt(dist) {  // 罗盘方位角：北=0 顺时针
+  const u = Math.max(2000, Math.min(tot - 2000, dist));
+  const a = pointAt(u - 1500), b = pointAt(u + 1500);
+  const mid = Math.cos((a[1] + b[1]) / 2 * Math.PI / 180);
+  const deg = Math.atan2((b[0] - a[0]) * mid, b[1] - a[1]) * 180 / Math.PI;
+  return (deg + 360) % 360;
+}
+
+/* ---------- 镜头帧表（30fps 全预计算，播=回放，天然平滑） ---------- */
+function buildFrames() {
+  frames = [];
+  const N = Math.ceil(T_TOTAL * TUNE.fps / 1000);
+  for (let f = 0; f <= N; f++) frames.push(camState(f / TUNE.fps * 1000));
+}
+function camState(t) {
+  if (t < TUNE.holdWide) {           // 全景：让观众先看清全图
+    const k = t / TUNE.holdWide;
+    return { c: boundsCenter(), z: TUNE.zWide, p: TUNE.pitchStart, b: -18 + 18 * k, phase: "全景定位", dist: 0 };
+  }
+  if (t < TUNE.holdWide + TUNE.fly) { // 主飞行：先俯冲近，再贴地巡航
+    const u = (t - TUNE.holdWide) / TUNE.fly, ue = easeC(u);
+    const dist = ue * tot;
+    const z = TUNE.zWide + (TUNE.zCruise - TUNE.zWide) * easeOut(Math.min(1, u * 1.6));
+    const p = TUNE.pitchStart + (TUNE.pitchCruise - TUNE.pitchStart) * smst(u * 1.5);
+    return { c: pointAt(dist), z, p, b: TUNE.bearingSign * headingAt(dist), phase: "贴地飞行", dist };
+  }
+  const k = (t - TUNE.holdWide - TUNE.fly) / TUNE.holdEnd; // 收尾：缓缓拉开定格
+  const dist = tot;
+  return {
+    c: pointAt(tot), z: TUNE.zCruise - 0.6 * k, p: TUNE.pitchCruise - 10 * k,
+    b: TUNE.bearingSign * headingAt(tot), phase: "会师定格", dist
+  };
+}
+function boundsCenter() {
+  const lo = anchors.map(a => a[0]), la = anchors.map(a => a[1]);
+  return [(Math.min(...lo) + Math.max(...lo)) / 2, (Math.min(...la) + Math.max(...la)) / 2];
+}
+
+/* ---------- 播放 ---------- */
+let playT0 = 0, playing = false;
+$("btnPlay").onclick = startShow;
+function startShow() {
+  if (!ready) return;
+  if (rec) stopRec();
+  playing = true;
+  playT0 = performance.now();
+  requestAnimationFrame(tick);
+}
+function tick(now) {
+  if (!playing) return;
+  const t = now - playT0;
+  if (t >= T_TOTAL) { finish(); return; }
+  const st = frames[Math.min(frames.length - 1, Math.round(t * TUNE.fps / 1000))];
+  map.jumpTo({ center: st.c, zoom: st.z, pitch: st.p, bearing: st.b });
+  window.__sim = { pos: st.c, head: st.b, dist: st.dist };   // 冒烟测试钩子
+  stageEl.textContent = st.phase;
+  barEl.style.width = (t / T_TOTAL * 100).toFixed(1) + "%";
+  if (st.phase === "贴地飞行") {
+    let i = 0;
+    while (i < anchorCums.length - 1 && st.dist > anchorCums[i + 1]) i++;
+    bannerEl.innerHTML = "第" + (i + 1) + "/" + (anchorCums.length - 1) + "段 · " + stName(i) + " → " + stName(i + 1)
+      + " · 已走" + Math.round(st.dist) + "/" + Math.round(tot) + "km";
+  }
+  requestAnimationFrame(tick);
+}
+function stName(i) {
+  const n = names[i] || "";
+  return /^点\d+$/.test(n) ? "段" + i : n.split("-").pop().replace(/\d{4}.*$/, "");
+}
+function finish() {
+  playing = false;
+  const st = frames[frames.length - 1];
+  map.jumpTo({ center: st.c, zoom: st.z, pitch: st.p, bearing: st.b });
+  if (rec) stopRec();
+  else $("btnPlay").textContent = "▶ 重播";
+}
+
+/* ---------- 录制（先点录制 → 自动播放 → 播完自动下载 webm） ---------- */
+let chunks = [];
+$("btnRec").onclick = () => {
+  if (!ready || rec) return;
+  const stream = map.getCanvas().captureStream(TUNE.fps);
+  rec = new MediaRecorder(stream, { mimeType: MediaRecorder.isTypeSupported("video/webm;codecs=vp9") ? "video/webm;codecs=vp9" : "video/webm", videoBitsPerSecond: 12_000_000 });
+  chunks = [];
+  rec.ondataavailable = e => { if (e.data && e.data.size) chunks.push(e.data); };
+  rec.onstop = () => {
+    const blob = new Blob(chunks, { type: "video/webm" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "东路沙盘试点.webm";
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+    rec = null;
+    $("btnRec").textContent = "● 录制并保存";
+  };
+  rec.start();
+  $("btnRec").textContent = "○ 录制中…";
+  startShow();
+};
+function stopRec() {
+  if (rec && rec.state === "recording") rec.stop();
+}
+</script>
+</body>
+</html>
