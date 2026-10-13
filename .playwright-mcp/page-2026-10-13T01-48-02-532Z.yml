@@ -1,0 +1,11 @@
+- generic [active] [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - region "Map" [ref=f1e3]
+    - group [ref=f1e4]:
+      - generic [ref=f1e5]: 影像 Esri
+  - generic [ref=f1e6]:
+    - button "▶ 播放" [disabled] [ref=f1e7]
+    - button "● 录制并保存" [disabled] [ref=f1e8]
+  - generic [ref=f1e9]: 免费数据：Esri卫星影像 + AWS地形高程（首次加载山体需数秒）
+  - generic [ref=f1e10]: 等待数据…
+  - generic [ref=f1e11]: ——

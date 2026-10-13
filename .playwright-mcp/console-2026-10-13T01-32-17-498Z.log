@@ -1,0 +1,3 @@
+[    1134ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://127.0.0.1:8765/favicon.ico:0
+[    9764ms] ReferenceError: rec is not defined
+    at HTMLButtonElement.startShow (http://127.0.0.1:8765/_sandbox03/index.html:225:3)

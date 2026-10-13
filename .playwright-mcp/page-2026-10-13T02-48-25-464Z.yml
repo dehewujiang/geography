@@ -1,0 +1,302 @@
+- generic [ref=f3e2]:
+  - generic [ref=f3e4]:
+    - list [ref=f3e5]:
+      - listitem [ref=f3e6]:
+        - link "首页" [ref=f3e7] [cursor=pointer]:
+          - /url: //www.bilibili.com
+      - listitem [ref=f3e14]:
+        - link "番剧" [ref=f3e15] [cursor=pointer]:
+          - /url: //www.bilibili.com/anime/
+      - listitem [ref=f3e16]:
+        - link "直播" [ref=f3e17] [cursor=pointer]:
+          - /url: //live.bilibili.com/
+      - listitem [ref=f3e18]:
+        - link "游戏中心" [ref=f3e19] [cursor=pointer]:
+          - /url: //game.bilibili.com/
+      - listitem [ref=f3e20]:
+        - link "会员购" [ref=f3e21] [cursor=pointer]:
+          - /url: //show.bilibili.com/platform/home.html?msource=pc_web
+      - listitem [ref=f3e22]:
+        - link "漫画" [ref=f3e23] [cursor=pointer]:
+          - /url: //manga.bilibili.com?from=bill_top_mnav
+      - listitem [ref=f3e24]:
+        - link "赛事" [ref=f3e25] [cursor=pointer]:
+          - /url: //www.bilibili.com/v/game/match/
+    - list [ref=f3e26]:
+      - listitem [ref=f3e27] [cursor=pointer]
+  - generic [ref=f3e32]:
+    - generic [ref=f3e33]:
+      - generic [ref=f3e34]:
+        - heading "中央红军长征两万五千里，到底有多长？今天我们用地图来看看全过程！" [level=1] [ref=f3e37]
+        - generic [ref=f3e39]:
+          - generic [ref=f3e40]: 5.2万
+          - generic [ref=f3e43]: "109"
+          - generic [ref=f3e46]: 2026-10-12 13:40:39
+          - generic [ref=f3e48]: 未经作者授权，禁止转载
+      - generic "哔哩哔哩播放器" [ref=f3e60]
+      - generic [ref=f3e70]:
+        - generic [ref=f3e72]:
+          - generic "点赞（Q）" [ref=f3e74] [cursor=pointer]: "2864"
+          - generic "投币（W）" [ref=f3e79] [cursor=pointer]: "519"
+          - generic "收藏（E）" [ref=f3e84] [cursor=pointer]: "1292"
+          - generic [ref=f3e88]: "159"
+        - generic [ref=f3e95] [cursor=pointer]
+      - generic [ref=f3e98]: 1934 年 10 月，因第五次反 “围剿” 失利，8 万多中央红军从江西瑞金出发，开启战略转移，最初计划前往湘西会合红二、红六军团。 红军接连突破三道封锁线，血战湘江后兵力锐减，放弃原定计划，转向国民党兵力薄弱的贵州。1935 年 1 月渡过乌江、攻占遵义，召开遵义会议，实现伟大历史转折。 会后红军上演经典的四渡赤水，在川黔滇交界灵活穿插调动敌军，佯攻贵阳、威逼昆明，1935 年 5 月巧渡金沙江，跳出敌人包围圈；随后强渡大渡河、飞夺泸定桥。 接着红军翻越夹金山等雪山，跋涉危机四伏的茫茫草地，攻克腊子口，翻越六盘山，1935 年 10 月中央红军抵达陕北吴起镇。 1936 年 10 月，红二、红四方面军在甘肃会宁、将台堡同红一方面军胜利会师，长征胜利结束。 两万五千里长征跨越多重复杂地形，是山河间的伟大行军，深刻改变了中国历史走向。
+      - generic [ref=f3e101]:
+        - link "永不褪色的红飘带" [ref=f3e104] [cursor=pointer]:
+          - /url: https://m.bilibili.com/topic-detail?topic_id=1349540&topic_name=%E6%B0%B8%E4%B8%8D%E8%A4%AA%E8%89%B2%E7%9A%84%E7%BA%A2%E9%A3%98%E5%B8%A6&spm_id_from=0.0.top.function_card.click
+        - link "长征路线" [ref=f3e113] [cursor=pointer]:
+          - /url: //search.bilibili.com/all?keyword=%E9%95%BF%E5%BE%81%E8%B7%AF%E7%BA%BF&from_source=video_tag
+        - link "长征地图路线" [ref=f3e116] [cursor=pointer]:
+          - /url: //search.bilibili.com/all?keyword=%E9%95%BF%E5%BE%81%E5%9C%B0%E5%9B%BE%E8%B7%AF%E7%BA%BF&from_source=video_tag
+        - link "四渡赤水" [ref=f3e119] [cursor=pointer]:
+          - /url: //search.bilibili.com/all?keyword=%E5%9B%9B%E6%B8%A1%E8%B5%A4%E6%B0%B4&from_source=video_tag
+        - link "长征" [ref=f3e122] [cursor=pointer]:
+          - /url: //search.bilibili.com/all?keyword=%E9%95%BF%E5%BE%81&from_source=video_tag
+        - link "红军长征" [ref=f3e125] [cursor=pointer]:
+          - /url: //search.bilibili.com/all?keyword=%E7%BA%A2%E5%86%9B%E9%95%BF%E5%BE%81&from_source=video_tag
+        - link "长征精神" [ref=f3e128] [cursor=pointer]:
+          - /url: //search.bilibili.com/all?keyword=%E9%95%BF%E5%BE%81%E7%B2%BE%E7%A5%9E&from_source=video_tag
+        - link "巧渡金沙江" [ref=f3e131] [cursor=pointer]:
+          - /url: //search.bilibili.com/all?keyword=%E5%B7%A7%E6%B8%A1%E9%87%91%E6%B2%99%E6%B1%9F&from_source=video_tag
+        - link "湘江战役" [ref=f3e134] [cursor=pointer]:
+          - /url: //search.bilibili.com/all?keyword=%E6%B9%98%E6%B1%9F%E6%88%98%E5%BD%B9&from_source=video_tag
+      - generic [ref=f3e135]:
+        - link:
+          - /url: javascript:void(0);
+          - generic [ref=f3e136] [cursor=pointer]
+    - generic:
+      - generic:
+        - generic [ref=f3e139]:
+          - generic [ref=f3e140]: 创作团队 2人
+          - generic [ref=f3e141]:
+            - generic [ref=f3e143]:
+              - link [ref=f3e144] [cursor=pointer]:
+                - /url: //space.bilibili.com/442603088
+              - generic [ref=f3e145]:
+                - link "三维地图看世界" [ref=f3e146] [cursor=pointer]:
+                  - /url: //space.bilibili.com/442603088
+                - text: UP主
+            - generic [ref=f3e148]:
+              - link [ref=f3e149] [cursor=pointer]:
+                - /url: //space.bilibili.com/3493270518761892
+              - generic [ref=f3e150]:
+                - link "中国网信杂志" [ref=f3e151] [cursor=pointer]:
+                  - /url: //space.bilibili.com/3493270518761892
+                - text: 后期
+        - link "谐音梗挑战× 绷住挑战√ 微粒贷 16万 455" [ref=f3e159] [cursor=pointer]:
+          - /url: javascript:void(0);
+          - generic [ref=f3e166]:
+            - generic "谐音梗挑战× 绷住挑战√" [ref=f3e167]
+            - generic [ref=f3e168]: 微粒贷
+            - generic [ref=f3e172]: 16万 455
+        - generic [ref=f3e177]:
+          - generic [ref=f3e178]:
+            - generic [ref=f3e179]:
+              - generic [ref=f3e180]:
+                - generic [ref=f3e181]: 接下来播放
+                - generic [ref=f3e182] [cursor=pointer]: 自动连播
+              - generic [ref=f3e187]:
+                - link [ref=f3e191] [cursor=pointer]:
+                  - /url: /video/BV1bDA6zHEeb/?spm_id_from=333.788.recommend_more_video.-1&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                - generic [ref=f3e192]:
+                  - link [ref=f3e193] [cursor=pointer]:
+                    - /url: /video/BV1bDA6zHEeb/?spm_id_from=333.788.recommend_more_video.-1&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                    - paragraph [ref=f3e194]: 为何红军到了陕北，蒋介石的几十万大军就不死追了，这是为什么？
+                  - link "猛犸纪实" [ref=f3e196] [cursor=pointer]:
+                    - /url: //space.bilibili.com/312539483/
+                  - generic [ref=f3e199]: 44.5万 246
+            - generic [ref=f3e203]:
+              - generic [ref=f3e205]:
+                - link [ref=f3e209] [cursor=pointer]:
+                  - /url: /video/BV1bBKE6DEaK/?spm_id_from=333.788.recommend_more_video.0&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                - generic [ref=f3e210]:
+                  - link [ref=f3e211] [cursor=pointer]:
+                    - /url: /video/BV1bBKE6DEaK/?spm_id_from=333.788.recommend_more_video.0&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                    - paragraph [ref=f3e212]: 亚洲四强经济实力比较！各国差距有多大？
+                  - link "跳跳数据" [ref=f3e214] [cursor=pointer]:
+                    - /url: //space.bilibili.com/517752180/
+                  - generic [ref=f3e217]: 26.8万 439
+              - generic [ref=f3e221]:
+                - link [ref=f3e225] [cursor=pointer]:
+                  - /url: /video/BV1vz421R73x/?spm_id_from=333.788.recommend_more_video.1&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                - generic [ref=f3e226]:
+                  - link [ref=f3e227] [cursor=pointer]:
+                    - /url: /video/BV1vz421R73x/?spm_id_from=333.788.recommend_more_video.1&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                    - paragraph [ref=f3e228]: 一口气看完两万五千里红军长征全过程
+                  - link "旧时光历史" [ref=f3e230] [cursor=pointer]:
+                    - /url: //space.bilibili.com/3546389701200288/
+                  - generic [ref=f3e233]: 14.9万 175
+              - generic [ref=f3e237]:
+                - link [ref=f3e241] [cursor=pointer]:
+                  - /url: /video/BV1bEbD6PEV1/?spm_id_from=333.788.recommend_more_video.2&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                - generic [ref=f3e242]:
+                  - link [ref=f3e243] [cursor=pointer]:
+                    - /url: /video/BV1bEbD6PEV1/?spm_id_from=333.788.recommend_more_video.2&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                    - paragraph [ref=f3e244]: 1945年日本投降中国局势图
+                  - link "江宁南京" [ref=f3e246] [cursor=pointer]:
+                    - /url: //space.bilibili.com/3546894206765932/
+                  - generic [ref=f3e249]: 19.8万 15
+              - generic [ref=f3e253]:
+                - link [ref=f3e257] [cursor=pointer]:
+                  - /url: /video/BV19bBoBVE8v/?spm_id_from=333.788.recommend_more_video.3&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                - generic [ref=f3e258]:
+                  - link [ref=f3e259] [cursor=pointer]:
+                    - /url: /video/BV19bBoBVE8v/?spm_id_from=333.788.recommend_more_video.3&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                    - paragraph [ref=f3e260]: 三维图解：教员军事生涯的得意之作——四渡赤水全过程！
+                  - link "三维地图看世界" [ref=f3e262] [cursor=pointer]:
+                    - /url: //space.bilibili.com/442603088/
+                  - generic [ref=f3e265]: 181.3万 4012
+              - generic [ref=f3e269]:
+                - link [ref=f3e273] [cursor=pointer]:
+                  - /url: /video/BV12k4y1D7Au/?spm_id_from=333.788.recommend_more_video.4&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                - generic [ref=f3e274]:
+                  - link [ref=f3e275] [cursor=pointer]:
+                    - /url: /video/BV12k4y1D7Au/?spm_id_from=333.788.recommend_more_video.4&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                    - paragraph [ref=f3e276]: 飞机，为什么不敢飞过中国西藏？
+                  - link "三维地图看世界" [ref=f3e278] [cursor=pointer]:
+                    - /url: //space.bilibili.com/442603088/
+                  - generic [ref=f3e281]: 937.5万 1.1万
+              - generic [ref=f3e285]:
+                - link [ref=f3e289] [cursor=pointer]:
+                  - /url: /video/BV1ZLan6vEwb/?spm_id_from=333.788.recommend_more_video.5&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                - generic [ref=f3e290]:
+                  - link [ref=f3e291] [cursor=pointer]:
+                    - /url: /video/BV1ZLan6vEwb/?spm_id_from=333.788.recommend_more_video.5&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                    - paragraph [ref=f3e292]: Opus5.5给四渡赤水跪了！
+                  - link "Agent黄叔" [ref=f3e294] [cursor=pointer]:
+                    - /url: //space.bilibili.com/25591280/
+                  - generic [ref=f3e297]: 4万 8
+              - generic [ref=f3e301]:
+                - link [ref=f3e305] [cursor=pointer]:
+                  - /url: /video/BV1FzdZBMEa5/?spm_id_from=333.788.recommend_more_video.6&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                - generic [ref=f3e306]:
+                  - link [ref=f3e307] [cursor=pointer]:
+                    - /url: /video/BV1FzdZBMEa5/?spm_id_from=333.788.recommend_more_video.6&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                    - paragraph [ref=f3e308]: 80多年过去了，当年红军长征时那吃人的草地，如今怎么样了？
+                  - link "福运长虹" [ref=f3e310] [cursor=pointer]:
+                    - /url: //space.bilibili.com/3546854618827604/
+                  - generic [ref=f3e313]: 3.2万 7
+              - generic [ref=f3e317]:
+                - link [ref=f3e321] [cursor=pointer]:
+                  - /url: /video/BV1mK3yzjESc/?spm_id_from=333.788.recommend_more_video.7&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                - generic [ref=f3e322]:
+                  - link [ref=f3e323] [cursor=pointer]:
+                    - /url: /video/BV1mK3yzjESc/?spm_id_from=333.788.recommend_more_video.7&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                    - paragraph [ref=f3e324]: 一张带你看懂四渡赤水全过程。
+                  - link "地图上的档案" [ref=f3e326] [cursor=pointer]:
+                    - /url: //space.bilibili.com/3546920974813652/
+                  - generic [ref=f3e329]: 47.6万 782
+              - generic [ref=f3e333]:
+                - link [ref=f3e337] [cursor=pointer]:
+                  - /url: /video/BV18j41177eb/?spm_id_from=333.788.recommend_more_video.8&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                - generic [ref=f3e338]:
+                  - link [ref=f3e339] [cursor=pointer]:
+                    - /url: /video/BV18j41177eb/?spm_id_from=333.788.recommend_more_video.8&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                    - paragraph [ref=f3e340]: 中国，有哪些飞地？
+                  - link "三维地图看世界" [ref=f3e342] [cursor=pointer]:
+                    - /url: //space.bilibili.com/442603088/
+                  - generic [ref=f3e345]: 240.3万 5586
+              - generic [ref=f3e349]:
+                - link [ref=f3e353] [cursor=pointer]:
+                  - /url: /video/BV1CGsbzPEeP/?spm_id_from=333.788.recommend_more_video.9&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                - generic [ref=f3e354]:
+                  - link [ref=f3e355] [cursor=pointer]:
+                    - /url: /video/BV1CGsbzPEeP/?spm_id_from=333.788.recommend_more_video.9&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                    - paragraph [ref=f3e356]: 混子哥边画边讲：长征
+                  - link "混子哥边画边讲" [ref=f3e358] [cursor=pointer]:
+                    - /url: //space.bilibili.com/3546918961547843/
+                  - generic [ref=f3e361]: 30万 551
+              - generic [ref=f3e365]:
+                - link [ref=f3e369] [cursor=pointer]:
+                  - /url: /video/BV1t5411w7PM/?spm_id_from=333.788.recommend_more_video.10&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                - generic [ref=f3e370]:
+                  - link [ref=f3e371] [cursor=pointer]:
+                    - /url: /video/BV1t5411w7PM/?spm_id_from=333.788.recommend_more_video.10&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                    - paragraph [ref=f3e372]: 【长征】得知红军第四次渡过赤水，陈诚的反应亮了
+                  - link "风华正茂某先生" [ref=f3e374] [cursor=pointer]:
+                    - /url: //space.bilibili.com/398894648/
+                  - generic [ref=f3e377]: 48.3万 242
+              - generic [ref=f3e381]:
+                - link [ref=f3e385] [cursor=pointer]:
+                  - /url: /video/BV1sBp9ziEkJ/?spm_id_from=333.788.recommend_more_video.11&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                - generic [ref=f3e386]:
+                  - link [ref=f3e387] [cursor=pointer]:
+                    - /url: /video/BV1sBp9ziEkJ/?spm_id_from=333.788.recommend_more_video.11&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                    - paragraph [ref=f3e388]: 长征：得知红军穿越了草地，蒋介石恼羞成怒！
+                  - link "文芯雕龍" [ref=f3e390] [cursor=pointer]:
+                    - /url: //space.bilibili.com/237750010/
+                  - generic [ref=f3e393]: 5.6万 62
+              - generic [ref=f3e397]:
+                - link [ref=f3e401] [cursor=pointer]:
+                  - /url: /video/BV1Gz746VEii/?spm_id_from=333.788.recommend_more_video.12&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                - generic [ref=f3e402]:
+                  - link [ref=f3e403] [cursor=pointer]:
+                    - /url: /video/BV1Gz746VEii/?spm_id_from=333.788.recommend_more_video.12&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                    - paragraph [ref=f3e404]: 四渡赤水，靠的是什么？
+                  - link "平原公子" [ref=f3e406] [cursor=pointer]:
+                    - /url: //space.bilibili.com/11731157/
+                  - generic [ref=f3e409]: 36.7万 1255
+              - generic [ref=f3e413]:
+                - link [ref=f3e417] [cursor=pointer]:
+                  - /url: /video/BV1AC4y1Y73g/?spm_id_from=333.788.recommend_more_video.13&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                - generic [ref=f3e418]:
+                  - link [ref=f3e419] [cursor=pointer]:
+                    - /url: /video/BV1AC4y1Y73g/?spm_id_from=333.788.recommend_more_video.13&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                    - paragraph [ref=f3e420]: 昆仑山为什么被称为万山之祖？常年重兵把守，到底有什么神秘的？
+                  - link "三维地图看世界" [ref=f3e422] [cursor=pointer]:
+                    - /url: //space.bilibili.com/442603088/
+                  - generic [ref=f3e425]: 231.2万 4683
+              - generic [ref=f3e429]:
+                - link [ref=f3e433] [cursor=pointer]:
+                  - /url: /video/BV1ctHy6EEB2/?spm_id_from=333.788.recommend_more_video.14&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                - generic [ref=f3e434]:
+                  - link [ref=f3e435] [cursor=pointer]:
+                    - /url: /video/BV1ctHy6EEB2/?spm_id_from=333.788.recommend_more_video.14&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                    - paragraph [ref=f3e436]: "\"觉醒年代\"导演！2026重磅史诗巨制《伟大的长征》预告，豪华阵容！定档10.09"
+                  - link "乌鸦预告片" [ref=f3e438] [cursor=pointer]:
+                    - /url: //space.bilibili.com/8465957/
+                  - generic [ref=f3e441]: 24.4万 533
+              - generic [ref=f3e445]:
+                - link [ref=f3e449] [cursor=pointer]:
+                  - /url: /video/BV1ytkzBRECW/?spm_id_from=333.788.recommend_more_video.15&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                - generic [ref=f3e450]:
+                  - link [ref=f3e451] [cursor=pointer]:
+                    - /url: /video/BV1ytkzBRECW/?spm_id_from=333.788.recommend_more_video.15&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                    - paragraph [ref=f3e452]: 回眸2016……
+                  - link "北京富爷" [ref=f3e454] [cursor=pointer]:
+                    - /url: //space.bilibili.com/36619756/
+                  - generic [ref=f3e457]: 18万 33
+              - generic [ref=f3e461]:
+                - link [ref=f3e465] [cursor=pointer]:
+                  - /url: /video/BV1p2KD6vECN/?spm_id_from=333.788.recommend_more_video.16&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                - generic [ref=f3e466]:
+                  - link [ref=f3e467] [cursor=pointer]:
+                    - /url: /video/BV1p2KD6vECN/?spm_id_from=333.788.recommend_more_video.16&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                    - paragraph [ref=f3e468]: 2016中美南海对峙
+                  - link "你好呀展" [ref=f3e470] [cursor=pointer]:
+                    - /url: //space.bilibili.com/2074252314/
+                  - generic [ref=f3e473]: 9.4万 2
+              - generic [ref=f3e477]:
+                - link [ref=f3e481] [cursor=pointer]:
+                  - /url: /video/BV1zT42167dP/?spm_id_from=333.788.recommend_more_video.17&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                - generic [ref=f3e482]:
+                  - link [ref=f3e483] [cursor=pointer]:
+                    - /url: /video/BV1zT42167dP/?spm_id_from=333.788.recommend_more_video.17&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                    - paragraph [ref=f3e484]: 地图演示长征路线图，看看长征是如何走出来的，铭记历史
+                  - link "有趣地图" [ref=f3e486] [cursor=pointer]:
+                    - /url: //space.bilibili.com/651389085/
+                  - generic [ref=f3e489]: 14.1万 255
+              - generic [ref=f3e493]:
+                - link [ref=f3e497] [cursor=pointer]:
+                  - /url: /video/BV19LoFBhESS/?spm_id_from=333.788.recommend_more_video.18&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                - generic [ref=f3e498]:
+                  - link [ref=f3e499] [cursor=pointer]:
+                    - /url: /video/BV19LoFBhESS/?spm_id_from=333.788.recommend_more_video.18&trackid=web_related_0.router-related-2479604-dplt2.1791859708671.721
+                    - paragraph [ref=f3e500]: 红军长征，到底有多艰难
+                  - link "再次进击的白小莹" [ref=f3e502] [cursor=pointer]:
+                    - /url: //space.bilibili.com/3494374866422374/
+                  - generic [ref=f3e505]: 120.5万 4096
+            - generic [ref=f3e508] [cursor=pointer]: 展开
+          - link "谁会是哔哩哔哩王者第一人气英雄？进来瞧瞧" [ref=f3e510] [cursor=pointer]:
+            - /url: javascript:void(0);

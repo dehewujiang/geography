@@ -1,0 +1,2 @@
+[    8136ms] TypeError: Cannot read properties of undefined (reading 'c')
+    at tick (http://127.0.0.1:8765/_sandbox03/index.html:244:27)

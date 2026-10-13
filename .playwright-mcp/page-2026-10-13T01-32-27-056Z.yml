@@ -1,0 +1,14 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic:
+      - region "Map" [ref=e3]
+      - generic: 分兵点-达拉沟
+      - generic: 中转-大理1253年12月
+    - group [ref=e4]:
+      - generic [ref=e5]: 影像 Esri | 高程 AWS/OTM
+  - generic [ref=e6]:
+    - button "▶ 播放" [ref=e7] [cursor=pointer]
+    - button "● 录制并保存" [ref=e8] [cursor=pointer]
+  - generic [ref=e9]: 免费数据：Esri卫星影像 + AWS地形高程（首次加载山体需数秒）
+  - generic [ref=e10]: 就绪（总里程≈1076km）
+  - generic [ref=e11]: 上半场-东路牵制（抄合、也只烈）
