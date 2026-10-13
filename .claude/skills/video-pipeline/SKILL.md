@@ -15,6 +15,7 @@ description: 短视频流水线入口卡（主题驱动：说一个主题→自�
 |---|---|---|---|
 | 1.事实锁死 | `references/step1-fact.md` + **审校**`references/fact-auditor.md` | 事实卡一页+母版kml | 没事实卡不开文案 |
 | 2.叙事定稿 | `references/step2-narrative.md` | 文案+分镜 | 文案没定稿不动脚本 |
+| 2.5 分镜预演 | `references/design-loop.md` + **模板**`references/shot-templates.md` + **词汇**`references/lexicon.md` | 配方草案(机器卡口过)+预演板+锁版签名 | 没锁版不渲染 |
 | 3.呈现生成 | `references/step3-present.md` + **编码**`references/ges-expert.md` + **镜头**`references/cinematography.md` | esp+kml成对 | `verify`没过不进GES |
 | 4.亲眼验收 | `references/step4-review.md` | 问题单 | 用户没播一遍不发布 |
 | 5.发布复盘 | `references/step5-publish.md` + **后期**`references/post-production.md` | 标题封面+渲染操作清单+剪辑节奏表+复盘一行 | 没复盘不开下一主题 |
@@ -45,3 +46,11 @@ description: 短视频流水线入口卡（主题驱动：说一个主题→自�
 - 叙事和呈现交界：`make_video_assets.py` 的 `CLIPS` 表（cam 逐点坐标 + alts/tilts 逐点数组 + hold 定场静止秒）。
 - 生成校验：`python make_video_assets.py generate` → `verify`（退出码0才算过）。
 - 成品：`视频制作/XX_*.esp` + `XX_*.kml`，先拖esp后拖kml进GES。
+
+## 2026-10-13 定调（重大转折，详见根目录 `memory/decisions.md` ADR-005~008）
+
+- 本项目重定义：**真产品=这套 AI 视频系统（skill/hooks/workflow harness）**，蒙古包抄南宋只是测试用例
+- 成片规格：**竖屏 1080×1920**；时长不锁死，由事实密度定（分镜层拿定义权）
+- 分工口诀：**几何正确归机器，观感受众归后期**（后期=baocut 为主选、剪映为备份——ADR-006）
+- 渲染器：**自建引擎为主**（竖屏原生+翻山剖面+高程夸张，GES 三死穴）；GES 转"横屏震撼航拍配菜"（竖屏上部画面+下部字幕带版式）；裁决=三张牌擂台赛（ADR-008）
+- 风格裁判：参照"三维地图看世界"拆解（二抄一反，ADR-007）；**来源标注义务一票否决**
