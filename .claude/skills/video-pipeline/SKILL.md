@@ -15,7 +15,7 @@ description: 短视频流水线入口卡（主题驱动：说一个主题→自�
 |---|---|---|---|
 | 1.事实锁死 | `references/step1-fact.md` + **审校**`references/fact-auditor.md` | 事实卡一页+母版kml | 没事实卡不开文案 |
 | 2.叙事定稿 | `references/step2-narrative.md` | 文案+分镜 | 文案没定稿不动脚本 |
-| 2.5 分镜预演 | `references/design-loop.md` + **模板**`references/shot-templates.md` + **词汇**`references/lexicon.md` + **粮库**`references/data-sources.md` | 配方草案(机器卡口过)+预演板+锁版签名 | 没锁版不渲染 |
+| 2.5 分镜预演 | `references/design-loop.md` + **模板**`references/shot-templates.md` + **词汇**`references/lexicon.md` + **粮库**`references/data-sources.md` + **导演执照**`references/director.md` | 配方草案(机器卡口过)+预演板+锁版签名 | 没锁版不渲染 |
 | 3.呈现生成 | `references/step3-present.md` + **编码**`references/ges-expert.md` + **镜头**`references/cinematography.md` | esp+kml成对 | `verify`没过不进GES |
 | 4.亲眼验收 | `references/step4-review.md` | 问题单 | 用户没播一遍不发布 |
 | 5.发布复盘 | `references/step5-publish.md` + **后期**`references/post-production.md` | 标题封面+渲染操作清单+剪辑节奏表+复盘一行 | 没复盘不开下一主题 |
