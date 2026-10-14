@@ -3,7 +3,7 @@
 
 [INPUT]: 母版《蒙古大迂回_三路路线.kml》（只读，项目唯一坐标来源）
 [OUTPUT]: 同目录 route.json（route=东路坐标串；landmarks=全部带名地标）
-[POS]: _sandbox03 的数据入口，index.html 只吃这个 json，不直接读母版
+[POS]: 试点存档/沙盘试点 的数据入口，index.html 只吃这个 json，不直接读母版
 [PROTOCOL]: 母版地标数=17；此处只读不校验17（校验归 make_video_assets.py）
 """
 import json
@@ -12,7 +12,7 @@ import os
 import re
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-SRC = os.path.join(os.path.dirname(HERE), "蒙古大迂回_三路路线.kml")
+SRC = os.path.join(os.path.dirname(os.path.dirname(HERE)), "蒙古大迂回_三路路线.kml")
 
 
 def parse_placemarks(xml):

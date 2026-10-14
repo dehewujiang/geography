@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os, zipfile, re, html
-base = os.path.dirname(os.path.abspath(__file__))
+base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 epub = [os.path.join(r, f) for r, d, fs in os.walk(base)
         for f in fs if f.lower().endswith(".epub") and ".git" not in r][0]
 z = zipfile.ZipFile(epub)

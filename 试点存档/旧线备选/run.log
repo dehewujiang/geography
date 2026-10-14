@@ -1,0 +1,32 @@
+leg0: 缓存命中 total约132km
+leg0: 23格 total约132km
+leg1: 缓存命中 total约31km
+leg1: 6格 totaleg2: 34竘eg2: 34格 total约207km
+leg2: 34格 totalleg3: 21竘eg3: 21格 total约132km
+leg3: 21格 total约132km
+leg4: 48格 total约288km
+leg4: 48格 total约288km
+leg5: 30格 total约181km
+leg5: 30格 total约181km
+leg6: 25格 total约151km
+leg6: 25格 total约151km
+leg7: 22格 total约115km
+leg7: 22格 total约115km
+{
+ "legs_km": [
+  131.8,
+  31.1,
+  207.0,
+  132.1,
+  287.5,
+  181.4,
+  150.9,
+  115.2
+ ],
+ "total_km": 1237.1,
+ "n_points": 156,
+ "path_max_m": 4119,
+ "straight_max_m": 4289,
+ "step_deg": 0.05,
+ "src": "open-meteo elevation API, 2026-10-12"
+}

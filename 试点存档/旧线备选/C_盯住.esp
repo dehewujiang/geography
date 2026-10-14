@@ -1,0 +1,347 @@
+{
+    "modelVersion": 17,
+    "settings": {
+        "name": "C_盯住",
+        "frameRate": 30,
+        "dimensions": {
+            "width": 1920,
+            "height": 1080
+        },
+        "duration": 180,
+        "timeFormat": "frames"
+    },
+    "scenes": [
+        {
+            "world": {
+                "kmls": []
+            },
+            "animationModel": {
+                "roving": true,
+                "logarithmic": false,
+                "groupedPosition": true
+            },
+            "duration": 180,
+            "attributes": [
+                {
+                    "type": "cameraGroup",
+                    "inTimeline": true,
+                    "attributes": [
+                        {
+                            "type": "cameraPositionGroup",
+                            "inTimeline": true,
+                            "attributes": [
+                                {
+                                    "type": "longitude",
+                                    "value": {
+                                        "minValueRange": -180.0,
+                                        "maxValueRange": 180.0,
+                                        "relative": 0.7819722222222222
+                                    },
+                                    "keyframes": [
+                                        {
+                                            "time": 0.0,
+                                            "value": 0.7819722222222222,
+                                            "transitionOut": {
+                                                "x": 0.066,
+                                                "y": 0.0,
+                                                "influence": 0.5,
+                                                "type": "auto"
+                                            }
+                                        },
+                                        {
+                                            "time": 0.2621530078163715,
+                                            "value": 0.7801388888888889
+                                        },
+                                        {
+                                            "time": 1.0,
+                                            "value": 0.7782222222222221,
+                                            "transitionIn": {
+                                                "x": -0.066,
+                                                "y": 0.0,
+                                                "influence": 0.5,
+                                                "type": "auto"
+                                            }
+                                        }
+                                    ],
+                                    "intimeline": true
+                                },
+                                {
+                                    "type": "latitude",
+                                    "value": {
+                                        "minValueRange": -89.9999,
+                                        "maxValueRange": 89.9999,
+                                        "relative": 0.6523335025927807
+                                    },
+                                    "keyframes": [
+                                        {
+                                            "time": 0.0,
+                                            "value": 0.6523335025927807,
+                                            "transitionOut": {
+                                                "x": 0.066,
+                                                "y": 0.0,
+                                                "influence": 0.5,
+                                                "type": "auto"
+                                            }
+                                        },
+                                        {
+                                            "time": 0.2621530078163715,
+                                            "value": 0.6515557239508044
+                                        },
+                                        {
+                                            "time": 1.0,
+                                            "value": 0.6427223808026453,
+                                            "transitionIn": {
+                                                "x": -0.066,
+                                                "y": 0.0,
+                                                "influence": 0.5,
+                                                "type": "auto"
+                                            }
+                                        }
+                                    ],
+                                    "intimeline": true
+                                },
+                                {
+                                    "type": "altitude",
+                                    "value": {
+                                        "minValueRange": -500.0,
+                                        "maxValueRange": 65117481.0,
+                                        "relative": 0.0021576221781200496,
+                                        "logarithmic": false
+                                    },
+                                    "keyframes": [
+                                        {
+                                            "time": 0.0,
+                                            "value": 0.0021576221781200496
+                                        },
+                                        {
+                                            "time": 0.2621530078163715,
+                                            "value": 0.00154335251886879
+                                        },
+                                        {
+                                            "time": 1.0,
+                                            "value": 0.0024647570077456792
+                                        }
+                                    ],
+                                    "intimeline": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "cameraTargetEffect",
+                            "attributes": [
+                                {
+                                    "type": "enabled",
+                                    "value": {
+                                        "relative": 1
+                                    }
+                                },
+                                {
+                                    "type": "poi",
+                                    "attributes": [
+                                        {
+                                            "type": "longitudePOI",
+                                            "value": {
+                                                "minValueRange": -180.0,
+                                                "maxValueRange": 180.0,
+                                                "relative": 0.7782222222222221
+                                            }
+                                        },
+                                        {
+                                            "type": "latitudePOI",
+                                            "value": {
+                                                "minValueRange": -89.9999,
+                                                "maxValueRange": 89.9999,
+                                                "relative": 0.6427223808026453
+                                            }
+                                        },
+                                        {
+                                            "type": "altitudePOI",
+                                            "value": {
+                                                "minValueRange": -500.0,
+                                                "maxValueRange": 65117481.0,
+                                                "relative": 3.900612336245499e-05,
+                                                "logarithmic": false
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "influence",
+                                    "value": {
+                                        "relative": 1
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "cameraRotationGroup",
+                            "inTimeline": true,
+                            "attributes": [
+                                {
+                                    "type": "rotationX",
+                                    "value": {
+                                        "minValueRange": 0.0,
+                                        "maxValueRange": 360.0,
+                                        "relative": 0.7126899296089476
+                                    },
+                                    "keyframes": [
+                                        {
+                                            "time": 0.0,
+                                            "value": 0.7126899296089476,
+                                            "transitionOut": {
+                                                "x": 0.066,
+                                                "y": 0.0,
+                                                "influence": 0.5,
+                                                "type": "auto"
+                                            }
+                                        },
+                                        {
+                                            "time": 0.2621530078163715,
+                                            "value": 0.5589641308385682,
+                                            "transitionIn": {
+                                                "x": -0.066,
+                                                "y": 0.0,
+                                                "influence": 0.5,
+                                                "type": "auto"
+                                            }
+                                        }
+                                    ],
+                                    "intimeline": true
+                                },
+                                {
+                                    "type": "rotationY",
+                                    "value": {
+                                        "minValueRange": 0.0,
+                                        "maxValueRange": 180.0,
+                                        "relative": 0.16666666666666666
+                                    },
+                                    "keyframes": [
+                                        {
+                                            "time": 0.0,
+                                            "value": 0.16666666666666666
+                                        },
+                                        {
+                                            "time": 0.2621530078163715,
+                                            "value": 0.16666666666666666
+                                        },
+                                        {
+                                            "time": 1.0,
+                                            "value": 0.1111111111111111
+                                        }
+                                    ],
+                                    "intimeline": true
+                                },
+                                {
+                                    "type": "rotationZ",
+                                    "value": {}
+                                }
+                            ]
+                        },
+                        {
+                            "type": "cameraLensGroup",
+                            "attributes": [
+                                {
+                                    "type": "fov",
+                                    "value": {}
+                                },
+                                {
+                                    "type": "exposure",
+                                    "value": {}
+                                },
+                                {
+                                    "type": "aperture",
+                                    "value": {}
+                                },
+                                {
+                                    "type": "minFocusLength",
+                                    "value": {}
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "environmentGroup",
+                    "attributes": [
+                        {
+                            "type": "sunGroup",
+                            "attributes": [
+                                {
+                                    "type": "sunVisibility",
+                                    "value": {}
+                                },
+                                {
+                                    "type": "worldTime",
+                                    "value": {
+                                        "relative": 0.8
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "cloudGroup",
+                            "attributes": [
+                                {
+                                    "type": "cloudVisibility",
+                                    "value": {}
+                                },
+                                {
+                                    "type": "cloudopacity",
+                                    "value": {}
+                                },
+                                {
+                                    "type": "cloudheight",
+                                    "value": {}
+                                },
+                                {
+                                    "type": "clouddate",
+                                    "value": {
+                                        "relative": 0.9545454545454546
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "starsPlanetsGroup",
+                            "attributes": [
+                                {
+                                    "type": "starsEnabled",
+                                    "value": {}
+                                }
+                            ]
+                        },
+                        {
+                            "type": "seawaterGroup",
+                            "attributes": [
+                                {
+                                    "type": "seawater",
+                                    "value": {}
+                                },
+                                {
+                                    "type": "influence",
+                                    "value": {
+                                        "relative": 1
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "buildingsEnabled",
+                            "value": {}
+                        }
+                    ]
+                }
+            ],
+            "cameraExport": {
+                "logarithmic": false,
+                "modelVersion": 2
+            }
+        }
+    ],
+    "playbackManager": {
+        "range": {
+            "start": 0,
+            "end": 180
+        }
+    }
+}
