@@ -22,7 +22,7 @@
 |---|---|---|---|
 | 路线生长动画 | route reveal + draw-on / write-on effect（AE圈） | ① | |
 | 里程碑弹出 | pin drop（地图图钉） | ② | |
-| 2D剖面图动画 | elevation profile（测绘标准词 cross-section）；整套爬杆动画无专名 | ①+③ | B镜头 |
+| 剖面侧视动画（B镜头） | elevation profile（测绘标准词 cross-section）；实现=正交相机 orthographic side view | ①+③ | 同引擎直拍（ADR-013），非SVG贴图 |
 | 大山拔高2~3倍 | vertical exaggeration（高程夸张） | ① | GIS正式术语 |
 | 底图 | basemap | ① | Esri等 |
 | 山体加明暗影 | hillshade（山体阴影） | ① | GIS正式术语 |
