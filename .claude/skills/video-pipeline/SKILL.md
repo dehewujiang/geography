@@ -7,7 +7,7 @@ description: 短视频流水线入口卡（主题驱动：说一个主题→自�
 
 > 大白话：我是菜单，不做菜。细节全在 `references/` 抽屉里，用哪步拿哪屉。
 > 项目地图见根目录 `CLAUDE.md`，素材清单见 `视频制作/CLAUDE.md`。
-> 本项目已升级为**主题驱动流水线**（2026-10-12）：目标 = 用户说一个主题 → AI 自动产出成品素材包+后期包，用户只做 GES 导入验收和发布。
+> 本项目已升级为**主题驱动流水线**（2026-10-12）：目标 = 用户说一个主题 → AI 自动产出成品素材包+后期包，用户只做亲眼看片验收和发布（主线=本地渲染帧；GES 导入属配菜线）。
 
 ## 五步单向走，不许跳步回改
 
@@ -16,7 +16,7 @@ description: 短视频流水线入口卡（主题驱动：说一个主题→自�
 | 1.事实锁死 | `references/step1-fact.md` + **审校**`references/fact-auditor.md` | 事实卡一页+母版kml | 没事实卡不开文案 |
 | 2.叙事定稿 | `references/step2-narrative.md` | 文案+分镜 | 文案没定稿不动脚本 |
 | 2.5 分镜预演 | `references/design-loop.md` + **模板**`references/shot-templates.md` + **词汇**`references/lexicon.md` + **粮库**`references/data-sources.md` + **导演执照**`references/director.md` | 配方草案(机器卡口过)+预演板+锁版签名 | 没锁版不渲染 |
-| 3.呈现生成 | `references/step3-present.md` + **编码**`references/ges-expert.md` + **镜头**`references/cinematography.md` | esp+kml成对 | `verify`没过不进GES |
+| 3.呈现生成 | 主线=自建引擎（规格见 `references/post-production.md` §0）：配方表→Blender逐帧→分层EXR；配菜=`references/step3-present.md` + **编码**`references/ges-expert.md` + **镜头**`references/cinematography.md` | 主线=锁版配方表+分层EXR；配菜=esp+kml成对 | 主线=没锁版不渲染；配菜=`verify`没过不进GES |
 | 4.亲眼验收 | `references/step4-review.md` | 问题单 | 用户没播一遍不发布 |
 | 5.发布复盘 | `references/step5-publish.md` + **后期**`references/post-production.md` | 标题封面+渲染操作清单+剪辑节奏表+复盘一行 | 没复盘不开下一主题 |
 
@@ -51,6 +51,6 @@ description: 短视频流水线入口卡（主题驱动：说一个主题→自�
 
 - 本项目重定义：**真产品=这套 AI 视频系统（skill/hooks/workflow harness）**，蒙古包抄南宋只是测试用例
 - 成片规格：**竖屏 1080×1920**；时长不锁死，由事实密度定（分镜层拿定义权）
-- 分工口诀：**几何正确归机器，观感受众归后期**（后期=baocut 为主选、剪映为备份——ADR-006）
-- 渲染器：**自建引擎为主**（竖屏原生+翻山剖面+高程夸张，GES 三死穴）；GES 转"横屏震撼航拍配菜"（竖屏上部画面+下部字幕带版式）；裁决=三张牌擂台赛（ADR-008）
+- 分工口诀：**几何正确归机器，观感受众归后期**（后期=DaVinci 无界面+脚本口——ADR-012；baocut 已退场；剪映留人工备份）
+- 渲染器：**自建引擎为主**（竖屏原生+翻山剖面+高程夸张，GES 三死穴；ADR-013：剖面=引擎正交侧视模式，弃独立2D小片）；GES 转"横屏震撼航拍配菜"（竖屏上部画面+下部字幕带版式）；擂台赛并入首跑检验（ADR-008/011）
 - 风格裁判：参照"三维地图看世界"拆解（二抄一反，ADR-007）；**来源标注义务一票否决**
